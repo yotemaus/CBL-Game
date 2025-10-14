@@ -3,20 +3,13 @@ package src.game.main;
 import src.game.ui.GamePanel;
 import src.game.ui.GameWindow;
 
-/**
-/**
- * 
- * `Creates the window frame and runs the game loop
- * 
- */
+//TODO: Mandatory javadoc comment
 public class Main {
     
     public static void main(String[] args) {
 
-        GameWindow window = new GameWindow();
         GamePanel panel = new GamePanel();
-        window.add(panel);
-        window.pack();
+        GameWindow window = new GameWindow(panel);
         //Game Loop
     }
 
