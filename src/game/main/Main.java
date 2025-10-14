@@ -9,8 +9,10 @@ public class Main {
     public static void main(String[] args) {
 
         GamePanel panel = new GamePanel();
-        GameWindow window = new GameWindow(panel);
+        new GameWindow(panel);
         //Game Loop
+        GameLoop loop = new GameLoop();
+        loop.startGameLoop();
     }
 
 }
