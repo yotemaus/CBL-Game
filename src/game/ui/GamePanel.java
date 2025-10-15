@@ -11,11 +11,11 @@ public class GamePanel extends JPanel {
     final int initialTileSize = 16;
     final int scale = 2;
 
-    final int tileSize = initialTileSize * scale;
+    public final int tileSize = initialTileSize * scale;
     final int maxScreenCol = 16;
     final int maxScreenRow = 9;
-    final int screenWidth = maxScreenCol * tileSize;
-    final int screenHeight = maxScreenRow * tileSize;
+    public final int screenWidth = maxScreenCol * tileSize;
+    public final int screenHeight = maxScreenRow * tileSize;
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));

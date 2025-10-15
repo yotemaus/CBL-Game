@@ -17,7 +17,6 @@ public class KeyHandler implements KeyListener {
 
         if (code == KeyEvent.VK_W) {
             upPressed = true;
-            System.out.println("W pressed");
         }
         if (code == KeyEvent.VK_A) {
             leftPressed = true;
@@ -37,7 +36,6 @@ public class KeyHandler implements KeyListener {
 
         if (code == KeyEvent.VK_W) {
             upPressed = false;
-            System.out.println("W released");
         }
         if (code == KeyEvent.VK_A) {
             leftPressed = false;
