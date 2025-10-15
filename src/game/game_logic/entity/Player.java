@@ -22,6 +22,7 @@ public class Player extends Entity {
         speed = 4;
     }
 
+    @Override
     public void update() {
         if (keyH.upPressed) {
             y -= speed;
@@ -35,11 +36,14 @@ public class Player extends Entity {
 
     }
 
+    @Override
     public void draw(Graphics2D g2) {
+
+        System.out.println("Player.draw at " + x + "," + y + " size=" + panel.tileSize);
 
         g2.setColor(Color.white);
 
-        g2.fillRect(x, y, panel.tileSize, panel. tileSize);
+        g2.fillRect(x, y, panel.tileSize, panel.tileSize);
 
     }
 }
