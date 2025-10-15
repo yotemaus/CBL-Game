@@ -2,6 +2,7 @@ package src.game.ui;
 
 import java.awt.*;
 import javax.swing.JPanel;
+import src.game.game_logic.input.KeyHandler;
 
 public class GamePanel extends JPanel {
     
@@ -20,6 +21,12 @@ public class GamePanel extends JPanel {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black); //Placeholder
         this.setDoubleBuffered(true);
+        this.addKeyListener(new KeyHandler());
+        this.setFocusable(true);
+    }
+
+    public void paintComponent(Graphics g) {
+
     }
 
 }

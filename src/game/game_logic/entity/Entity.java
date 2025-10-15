@@ -1,4 +1,4 @@
-package src.game.game_logic;
+package src.game.game_logic.entity;
 
 import java.awt.Point;
 import java.awt.image.BufferedImage;
