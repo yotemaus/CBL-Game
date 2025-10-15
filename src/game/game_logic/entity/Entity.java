@@ -1,6 +1,6 @@
 package src.game.game_logic.entity;
 
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -28,7 +28,7 @@ public abstract class Entity {
     }
 
     public void update() {}
-
-    public void draw(Graphics g) {}
+    
+    public void draw(Graphics2D g2) {}
 
 }
