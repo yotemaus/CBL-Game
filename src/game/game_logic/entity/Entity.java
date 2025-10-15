@@ -10,9 +10,10 @@ public abstract class Entity {
 
     public int x;
     public int y;
-    public int speedX;
-    public int speedY;
+    public int speed;
     private BufferedImage image;
+
+    public Entity() {}
 
     public Entity(int x , int y , String imagepath, int s) {
 
@@ -26,8 +27,8 @@ public abstract class Entity {
         }
     }
 
-    void update() { }
+    public void update() {}
 
-    void draw(Graphics g) {}
+    public void draw(Graphics g) {}
 
 }
