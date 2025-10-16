@@ -23,13 +23,13 @@ public class TileManager {
 
         try {
             tile[0] = new Tile();
-            tile[0].image = ImageIO.read(getClass().getResourceAsStream("resources/tiles/Grass_Middle.png"));
+            tile[0].image = ImageIO.read(getClass().getResourceAsStream("/resources/tiles/Grass_Middle.png"));
 
             tile[1] = new Tile();
-            tile[1].image = ImageIO.read(getClass().getResourceAsStream("resources/tiles/Path_Tile_left"));
+            tile[1].image = ImageIO.read(getClass().getResourceAsStream("/resources/tiles/Path_Tile_left.png"));
 
             tile[2] = new Tile();
-            tile[2].image = ImageIO.read(getClass().getResourceAsStream("resources/tiles/Path_Tile_right"));
+            tile[2].image = ImageIO.read(getClass().getResourceAsStream("/resources/tiles/Path_Tile_right.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
