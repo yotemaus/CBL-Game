@@ -1,6 +1,11 @@
 package src.game.game_logic.entity;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+
 import src.game.game_logic.input.KeyHandler;
 import src.game.ui.GamePanel;
 
@@ -9,6 +14,7 @@ public class Player extends Entity {
 
     private final GamePanel panel;
     private final KeyHandler keyH;
+    private BufferedImage image;
 
     public Player(GamePanel panel, KeyHandler keyH) {
         this.panel = panel;
@@ -20,6 +26,15 @@ public class Player extends Entity {
         x = panel.screenWidth / 2 - panel.tileSize / 2;
         y = panel.screenHeight / 2 - panel.tileSize / 2;
         speed = 4;
+        System.out.println(getClass().getResourceAsStream("/src/resources/sprites/player.jpg"));
+
+        try {
+            image = ImageIO.read(getClass().getResourceAsStream("/src/resources/sprites/player.jpg"));
+        } catch (IOException e) {
+            System.out.println("file not found");
+        }
+    
+        
     }
 
     @Override
@@ -38,12 +53,10 @@ public class Player extends Entity {
 
     @Override
     public void draw(Graphics2D g2) {
+        /**System.out.println("Player.draw at " + x + "," + y + " size=" + panel.tileSize);*/
+        g2.drawImage(image, null, x, y);
 
-        System.out.println("Player.draw at " + x + "," + y + " size=" + panel.tileSize);
 
-        g2.setColor(Color.white);
-
-        g2.fillRect(x, y, panel.tileSize, panel.tileSize);
 
     }
 }
