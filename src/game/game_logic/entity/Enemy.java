@@ -1,4 +1,4 @@
-package src.game.game_logic.entity;
+package game.game_logic.entity;
 
 import java.awt.Graphics2D;
 

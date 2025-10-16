@@ -1,17 +1,18 @@
-package src.game.ui;
+package game.ui;
 
 import java.awt.*;
 import javax.swing.JPanel;
-import src.game.game_logic.input.KeyHandler;
-import src.game.game_logic.tile.TileManager;
-import src.game.main.GameState;
+import game.game_logic.input.KeyHandler;
+import game.game_logic.tile.TileManager;
+import game.main.GameState;
+import game.main.Main;
 
 public class GamePanel extends JPanel {
     
     //Screen Dimensions
 
     final int initialTileSize = 16;
-    final int scale = 2;
+    final int scale = 3;
 
     public final int tileSize = initialTileSize * scale;
     public final int maxScreenCol = 16;
@@ -24,7 +25,6 @@ public class GamePanel extends JPanel {
     private final GameState gameState = new GameState(this, keyH);
 
     public GamePanel() {
-
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black); //Placeholder
         this.setDoubleBuffered(true);

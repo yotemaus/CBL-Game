@@ -1,7 +1,7 @@
-package src.game.ui;
+package game.ui;
 
 import javax.swing.JFrame;
-import src.game.main.GameLoop;
+import game.main.GameLoop;
 
 public class GameWindow extends JFrame {
     

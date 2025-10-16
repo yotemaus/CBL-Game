@@ -1,12 +1,12 @@
-package src.game.main;
+package game.main;
 
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
-import src.game.game_logic.entity.Entity;
-import src.game.game_logic.entity.Player;
-import src.game.game_logic.input.KeyHandler;
-import src.game.ui.GamePanel;
+import game.game_logic.entity.Entity;
+import game.game_logic.entity.Player;
+import game.game_logic.input.KeyHandler;
+import game.ui.GamePanel;
 
 public class GameState {
 

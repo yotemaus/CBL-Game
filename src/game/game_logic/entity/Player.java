@@ -1,18 +1,19 @@
-package src.game.game_logic.entity;
+package game.game_logic.entity;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import src.game.game_logic.input.KeyHandler;
-import src.game.ui.GamePanel;
+import game.game_logic.input.KeyHandler;
+import game.ui.GamePanel;
 
 
 public class Player extends Entity {
 
     private final GamePanel panel;
     private final KeyHandler keyH;
-    private BufferedImage image;
+
+  
 
     public Player(GamePanel panel, KeyHandler keyH) {
 
@@ -27,13 +28,9 @@ public class Player extends Entity {
 
         x = panel.screenWidth / 2 - panel.tileSize / 2;
         y = panel.screenHeight / 2 - panel.tileSize / 2;
-
+        direction = "down";
         speed = 4;
-        try {
-            image = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/player.jpg"));
-        } catch (IOException e) {
-            System.out.println("file not found");
-        }
+        
     }
 
     private BufferedImage imgHelper(String filePath) {
@@ -47,22 +44,26 @@ public class Player extends Entity {
 
     private void getPlayerImage() {
 
-        up1 = imgHelper("resources/sprites/player_D_walk_1.png");
-        up2 = imgHelper("resources/sprites/player_D_walk_2.png");
-        up3 = imgHelper("resources/sprites/player_D_walk_3.png");
-        up4 = imgHelper("resources/sprites/player_D_walk_4.png");
-        down1 = imgHelper("resources/sprites/player_S_walk_1.png");
-        down2 = imgHelper("resources/sprites/player_S_walk_2.png");
-        down3 = imgHelper("resources/sprites/player_S_walk_3.png");
-        down4 = imgHelper("resources/sprites/player_S_walk_4.png");
-        left1 = imgHelper("resources/sprites/player_A_walk_1.png");
-        left2 = imgHelper("resources/sprites/player_A_walk_2.png");
-        left3 = imgHelper("resources/sprites/player_A_walk_3.png");
-        left4 = imgHelper("resources/sprites/player_A_walk_4.png");
-        right1 = imgHelper("resources/sprites/player_D_walk_4.png");
-        right2 = imgHelper("resources/sprites/player_D_walk_1.png");
-        right3 = imgHelper("resources/sprites/player_D_walk_2.png");
-        right4 = imgHelper("resources/sprites/player_D_walk_3.png");
+        up1 = imgHelper("/sprites/player/player_W_walk_1.png");
+        up2 = imgHelper("/sprites/player/player_W_walk_2.png");
+        up3 = imgHelper("/sprites/player/player_W_walk_3.png");
+        up4 = imgHelper("/sprites/player/player_W_walk_2.png");
+
+        down1 = imgHelper("/sprites/player/player_S_walk_1.png");
+        down2 = imgHelper("/sprites/player/player_S_walk_2.png");
+        down3 = imgHelper("/sprites/player/player_S_walk_3.png");
+        down4 = imgHelper("/sprites/player/player_S_walk_2.png");
+
+        left1 = imgHelper("/sprites/player/player_A_walk_1.png");
+        left2 = imgHelper("/sprites/player/player_A_walk_2.png");
+        left3 = imgHelper("/sprites/player/player_A_walk_3.png");
+        left4 = imgHelper("/sprites/player/player_A_walk_4.png");
+
+        right1 = imgHelper("/sprites/player/player_D_walk_1.png");
+        right2 = imgHelper("/sprites/player/player_D_walk_2.png");
+        right3 = imgHelper("/sprites/player/player_D_walk_3.png");
+        right4 = imgHelper("/sprites/player/player_D_walk_4.png");
+    
     }
 
     @Override
@@ -81,6 +82,17 @@ public class Player extends Entity {
             direction = "right";
         }
 
+        if (keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
+            spriteCounter++;
+
+            if (spriteCounter > 6) {
+                spriteNum++;
+                if (spriteNum > 4) {
+                    spriteNum = 1;
+                }
+                spriteCounter = 0;
+            }
+        }
     }
 
     @Override
@@ -89,12 +101,66 @@ public class Player extends Entity {
         BufferedImage image = null;
 
         switch(direction) {
+            
             case "up":
                 if (spriteNum == 1) {
-                    image up1;
+                    image = up1;
                 }
-        }
+                if (spriteNum == 2) {
+                    image = up2;
+                }
+                if (spriteNum == 3) {
+                    image = up3;
+                }
+                if (spriteNum == 4) {
+                    image = up4;
+                }
+                break;
+            case "down":
+                if (spriteNum == 1) {
+                    image = down1;
+                }
+                if (spriteNum == 2) {
+                    image = down2;
+                }
+                if (spriteNum == 3) {
+                    image = down3;
+                }
+                if (spriteNum == 4) {
+                    image = down4;
+                }
+                break;
+            case "left":
+                if (spriteNum == 1) {
+                    image = left1;
+                }
+                if (spriteNum == 2) {
+                    image = left2;
+                }
+                if (spriteNum == 3) {
+                    image = left3;
+                }
+                if (spriteNum == 4) {
+                    image = left4;
+                }
+                break;
+            case "right":
+                if (spriteNum == 1) {
+                    image = right1;
+                }
+                if (spriteNum == 2) {
+                    image = right2;
+                }
+                if (spriteNum == 3) {
+                    image = right3;
+                }
+                if (spriteNum == 4) {
+                    image = right4;
+                }
+                break;
+            }
+
+        g2.drawImage(image, x, y, panel.tileSize, panel.tileSize, null);
 
     }
 }
-

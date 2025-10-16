@@ -1,4 +1,4 @@
-package src.game.main;
+package game.main;
 
 public class GameLoop implements Runnable {
 

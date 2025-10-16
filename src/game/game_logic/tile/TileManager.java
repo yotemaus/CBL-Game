@@ -1,4 +1,4 @@
-package src.game.game_logic.tile;
+package game.game_logic.tile;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import javax.imageio.ImageIO;
 import java.awt.Graphics2D;
-import src.game.ui.GamePanel;
+import game.ui.GamePanel;
 
 public class TileManager {
 
@@ -28,13 +28,13 @@ public class TileManager {
     public void getTileImage() {
         try {
             tile[0] = new Tile();
-            tile[0].image = ImageIO.read(getClass().getResourceAsStream("/resources/tiles/Grass_Middle.png"));
+            tile[0].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Grass_Middle.png"));
 
             tile[1] = new Tile();
-            tile[1].image = ImageIO.read(getClass().getResourceAsStream("/resources/tiles/Path_Tile_left.png"));
+            tile[1].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Path_Tile_left.png"));
 
             tile[2] = new Tile();
-            tile[2].image = ImageIO.read(getClass().getResourceAsStream("/resources/tiles/Path_Tile_right.png"));
+            tile[2].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Path_Tile_right.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -42,7 +42,7 @@ public class TileManager {
 
     public void loadMap() {
         try {
-            InputStream is = getClass().getResourceAsStream("/resources/maps/map1.txt");
+            InputStream is = getClass().getResourceAsStream("/maps/map1.txt");
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
             int row = 0;
             int col = 0;

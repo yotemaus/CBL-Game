@@ -1,17 +1,14 @@
-package src.game.main;
+package game.main;
 
 import javax.swing.SwingUtilities;
 
-import src.game.ui.GamePanel;
-import src.game.ui.GameWindow;
+import game.ui.GamePanel;
+import game.ui.GameWindow;
 
 //TODO: Mandatory javadoc comment
 public class Main {
     
     public static void main(String[] args) {
-        
-
-
 
         SwingUtilities.invokeLater(() -> {
             GamePanel panel = new GamePanel();

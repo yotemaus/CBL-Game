@@ -1,4 +1,4 @@
-package src.game.game_logic.tile;
+package game.game_logic.tile;
 
 import java.awt.image.BufferedImage;
 

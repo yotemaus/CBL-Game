@@ -1,4 +1,4 @@
-package src.game.game_logic.entity;
+package game.game_logic.entity;
 
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -32,10 +32,10 @@ public abstract class Entity {
 
     public String direction;
 
-    public int SpriteCounter = 0;
-    public int SpriteNum = 1;
+    public int spriteCounter = 0;
+    public int spriteNum = 1;
 
- /*    public Entity() {}
+    public Entity() {}
 
     public Entity(int x , int y , String imagepath, int s) {
 
@@ -48,7 +48,7 @@ public abstract class Entity {
             e.printStackTrace();
         }
     }
- */
+
     public void update() {}
     
     public void draw(Graphics2D g2) {}

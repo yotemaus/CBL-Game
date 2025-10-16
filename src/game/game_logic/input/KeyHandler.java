@@ -1,4 +1,4 @@
-package src.game.game_logic.input;
+package game.game_logic.input;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
