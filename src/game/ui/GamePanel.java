@@ -14,8 +14,8 @@ public class GamePanel extends JPanel {
     final int scale = 2;
 
     public final int tileSize = initialTileSize * scale;
-    final int maxScreenCol = 16;
-    final int maxScreenRow = 9;
+    public final int maxScreenCol = 16;
+    public final int maxScreenRow = 9;
     public final int screenWidth = maxScreenCol * tileSize;
     public final int screenHeight = maxScreenRow * tileSize;
 
@@ -45,6 +45,6 @@ public class GamePanel extends JPanel {
     }
 
     public void requestRepaint() {
-        repaint();
+        repaint(); 
     }
 }
