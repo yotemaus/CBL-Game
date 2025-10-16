@@ -3,6 +3,7 @@ package src.game.ui;
 import java.awt.*;
 import javax.swing.JPanel;
 import src.game.game_logic.input.KeyHandler;
+import src.game.game_logic.tile.TileManager;
 import src.game.main.GameState;
 
 public class GamePanel extends JPanel {
@@ -18,11 +19,12 @@ public class GamePanel extends JPanel {
     public final int screenWidth = maxScreenCol * tileSize;
     public final int screenHeight = maxScreenRow * tileSize;
 
+    private final TileManager tileM = new TileManager(this);
     private final KeyHandler keyH = new KeyHandler();
     private final GameState gameState = new GameState(this, keyH);
 
     public GamePanel() {
-        
+
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black); //Placeholder
         this.setDoubleBuffered(true);
@@ -38,6 +40,7 @@ public class GamePanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
+        tileM.draw(g2);
         gameState.render(g2);
     }
 
