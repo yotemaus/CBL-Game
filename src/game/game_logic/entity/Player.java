@@ -29,7 +29,7 @@ public class Player extends Entity {
         System.out.println(getClass().getResourceAsStream("/src/resources/sprites/player.jpg"));
 
         try {
-            image = ImageIO.read(getClass().getResourceAsStream("/src/resources/sprites/player.jpg"));
+            image = ImageIO.read(getClass().getResourceAsStream("/resources/sprites/player.jpg"));
         } catch (IOException e) {
             System.out.println("file not found");
         }
