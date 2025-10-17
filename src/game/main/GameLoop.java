@@ -1,5 +1,8 @@
 package game.main;
 
+/**
+ * Repeatedly calls update and draw methods of every entity to generate new frames.
+ */
 public class GameLoop implements Runnable {
 
     private final Runnable updater;
@@ -9,12 +12,21 @@ public class GameLoop implements Runnable {
 
     private final double targetUps; //Updates per second
 
+    /**
+     * Constructor.
+     * @param updater the GamePanels update method.
+     * @param renderer the GamePanels draw method.
+     * @param targetUps updates per second.
+     */
     public GameLoop(Runnable updater, Runnable renderer, double targetUps) {
         this.updater = updater;
         this.renderer = renderer;
         this.targetUps = targetUps;
     }
 
+    /**
+     * Start the loop.
+     */
     public void startGameLoop() {
 
         if (!running) {

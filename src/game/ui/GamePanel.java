@@ -1,12 +1,15 @@
 package game.ui;
 
-import java.awt.*;
-import javax.swing.JPanel;
 import game.game_logic.input.KeyHandler;
 import game.game_logic.tile.TileManager;
 import game.main.GameState;
-import game.main.Main;
+import java.awt.*;
+import javax.swing.JPanel;
 
+/**
+ * The JPanel objects the game is rendered inside of.
+ * A coordinate plane with 16x16 tiles.
+ */
 public class GamePanel extends JPanel {
     
     //Screen Dimensions
@@ -24,6 +27,9 @@ public class GamePanel extends JPanel {
     private final KeyHandler keyH = new KeyHandler();
     private final GameState gameState = new GameState(this, keyH);
 
+    /**
+     * Constructor.
+     */
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black); //Placeholder

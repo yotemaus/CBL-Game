@@ -1,19 +1,26 @@
 package game.game_logic.tile;
 
+import game.ui.GamePanel;
+import java.awt.Graphics2D;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import javax.imageio.ImageIO;
-import java.awt.Graphics2D;
-import game.ui.GamePanel;
 
+/**
+ * Creates an array of tile sprites to assemble the background of each screen using a text file.
+ */
 public class TileManager {
 
     GamePanel panel;
     Tile[] tile;
     int[][] mapTileNum;
 
+    /**
+     * Constructor.
+     * @param panel the GamePanel where the tiles need to be drawn.
+     */
     public TileManager(GamePanel panel) {
 
         this.panel = panel;
@@ -25,21 +32,31 @@ public class TileManager {
         loadMap();
     }
 
+    /**
+     * Stores tile images in an array for later use.
+     */
     public void getTileImage() {
         try {
             tile[0] = new Tile();
-            tile[0].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Grass_Middle.png"));
+            tile[0].image = ImageIO.read(getClass().getResourceAsStream(
+                "/Tiles/Grass_Middle.png"));
 
             tile[1] = new Tile();
-            tile[1].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Path_Tile_left.png"));
+            tile[1].image = ImageIO.read(getClass().getResourceAsStream(
+                "/Tiles/Path_Tile_left.png"));
 
             tile[2] = new Tile();
-            tile[2].image = ImageIO.read(getClass().getResourceAsStream("/tiles/Path_Tile_right.png"));
+            tile[2].image = ImageIO.read(getClass().getResourceAsStream(
+                "/Tiles/Path_Tile_right.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * Read the text file with the map template where numbers represent array indexes.
+     * 
+     */
     public void loadMap() {
         try {
             InputStream is = getClass().getResourceAsStream("/maps/map1.txt");
@@ -66,10 +83,14 @@ public class TileManager {
             }
             br.close();
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 
+    /**
+     * Draws each tile on the gamepanel.
+     * @param g2 Graphics2D object.
+     */
     public void draw(Graphics2D g2) {
         
         int row = 0;
@@ -80,7 +101,6 @@ public class TileManager {
         while (row < panel.maxScreenRow && col < panel.maxScreenCol) {
 
             int tileNum = mapTileNum[row][col];
-
             g2.drawImage(tile[tileNum].image, x, y, panel.tileSize, panel.tileSize, null);
             col++;
             x += panel.tileSize;

@@ -5,7 +5,11 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-
+/**
+ * An abstract class that acts as a template for the player, enemies and interactable objects.
+ * Each interactable objects has a position x, y, and is repeatedly updated by the GameState
+ * and GameLoop.
+ */
 public abstract class Entity {
 
     public int x;
@@ -37,6 +41,7 @@ public abstract class Entity {
 
     public Entity() {}
 
+    //TODO; Find out whether this is necessary, as this is an abstract class
     public Entity(int x , int y , String imagepath, int s) {
 
         this.x = x;

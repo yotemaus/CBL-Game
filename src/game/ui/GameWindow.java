@@ -1,11 +1,16 @@
 package game.ui;
 
 import javax.swing.JFrame;
-import game.main.GameLoop;
 
+/**
+ * The JFrame window the game runs inside of.
+ */
 public class GameWindow extends JFrame {
-    
-    public GameWindow(GamePanel panel, GameLoop loop) {
+    /**
+     * Constructor.
+     * @param panel the GamePanel that runs inside this window
+     */
+    public GameWindow(GamePanel panel) {
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Game");

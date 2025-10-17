@@ -1,11 +1,12 @@
 package game.main;
 
-import javax.swing.SwingUtilities;
-
 import game.ui.GamePanel;
 import game.ui.GameWindow;
+import javax.swing.SwingUtilities;
 
-//TODO: Mandatory javadoc comment
+/**
+ * Main class.
+ */
 public class Main {
     
     public static void main(String[] args) {
@@ -13,7 +14,7 @@ public class Main {
         SwingUtilities.invokeLater(() -> {
             GamePanel panel = new GamePanel();
             GameLoop loop = new GameLoop(panel::update, panel::requestRepaint, 60.0);
-            GameWindow window = new GameWindow(panel, loop);
+            GameWindow window = new GameWindow(panel);
             
             window.setVisible(true);
 

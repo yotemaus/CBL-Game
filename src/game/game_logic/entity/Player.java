@@ -1,36 +1,36 @@
 package game.game_logic.entity;
 
+import game.game_logic.input.KeyHandler;
+import game.ui.GamePanel;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import game.game_logic.input.KeyHandler;
-import game.ui.GamePanel;
 
-
+/**
+ * A character that is controllable by the player.
+ */
 public class Player extends Entity {
 
     private final GamePanel panel;
     private final KeyHandler keyH;
 
-  
-
+    /**
+     * Constructor.
+     * 
+     * @param panel GamePanel do display the player in.
+     * @param keyH KeyHandler to listen to player inpots to control the player.
+     */
     public Player(GamePanel panel, KeyHandler keyH) {
 
         this.panel = panel;
         this.keyH = keyH;
-    
-        setDefaultValues();
-        getPlayerImage();
-    }
-
-    private void setDefaultValues() {
-
         x = panel.screenWidth / 2 - panel.tileSize / 2;
         y = panel.screenHeight / 2 - panel.tileSize / 2;
         direction = "down";
         speed = 4;
-        
+
+        getPlayerImage();
     }
 
     private BufferedImage imgHelper(String filePath) {
@@ -66,6 +66,11 @@ public class Player extends Entity {
     
     }
 
+    /**
+     * KeyHandler listens to which key is being pressed, player is moved in the corresponding
+     * direction. Spritecounter is incremented to change the sprite as needed when walking to
+     * create animation.
+     */
     @Override
     public void update() {
         if (keyH.upPressed) {
@@ -95,6 +100,10 @@ public class Player extends Entity {
         }
     }
 
+    /**
+     * Matches walking direction and current spriteNumber to the saved sprite png to create 
+     * animation.
+     */
     @Override
     public void draw(Graphics2D g2) {
         
@@ -161,6 +170,5 @@ public class Player extends Entity {
             }
 
         g2.drawImage(image, x, y, panel.tileSize, panel.tileSize, null);
-
     }
 }

@@ -3,6 +3,9 @@ package game.game_logic.input;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * Allows the game to monitor keyboard inpots for the player to interact with the game.
+ */
 public class KeyHandler implements KeyListener {
 
     public boolean upPressed;
