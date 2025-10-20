@@ -29,20 +29,14 @@ public class Player extends Entity {
         y = panel.screenHeight / 2 - panel.tileSize / 2;
         direction = "down";
         speed = 4;
+        this.hitbox = new Rectangle(this.x,this.y,16,16);
 
-        getPlayerImage();
+        LoadPlayerImage();
     }
 
-    private BufferedImage imgHelper(String filePath) {
-        try {
-            return ImageIO.read(getClass().getResourceAsStream(filePath));
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
+    
 
-    private void getPlayerImage() {
+    private void LoadPlayerImage() {
 
         up1 = imgHelper("/sprites/player/player_W_walk_1.png");
         up2 = imgHelper("/sprites/player/player_W_walk_2.png");
@@ -98,6 +92,7 @@ public class Player extends Entity {
                 spriteCounter = 0;
             }
         }
+        this.hitbox = new Rectangle(this.x, this.y, 16, 16);
     }
 
     /**

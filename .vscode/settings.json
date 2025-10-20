@@ -2,5 +2,7 @@
     "java.project.sourcePaths": [
         "resources",
         "src"
+        
     ]
+    , "java.project.referencedLibraries" : ["resources/**"]
 }

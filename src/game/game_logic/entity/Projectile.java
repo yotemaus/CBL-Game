@@ -1,0 +1,44 @@
+package game.game_logic.entity;
+
+import java.awt.Graphics2D;
+import java.awt.geom.Ellipse2D;
+
+public class Projectile extends Entity{
+    String direction;
+    public Projectile(int px, int py, String pdirection) {
+
+        this.x=px;
+        this.y=py;
+        this.direction = pdirection;
+        this.hitbox = new Ellipse2D.Double(x + 8, y + 8, 16, 16); 
+        this.speed = 12;
+
+    }
+
+    @Override
+    public void update() {
+        switch (direction) {
+            case "up":
+                y -= speed;
+                break;
+            case "down":
+                y += speed;
+                break;
+            case "right":
+                x += speed;
+                break;
+            case "left":
+                x -= speed;
+                break;
+            
+            default:
+                break;
+        }
+        this.hitbox = new Ellipse2D.Double(x + 8, y + 8, 16, 16); 
+    }
+    @Override
+    public void draw(Graphics2D g) {
+        g.drawOval(x, y, 16, 16);
+    }
+
+}

@@ -1,6 +1,8 @@
 package game.game_logic.entity;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.Shape;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -15,7 +17,8 @@ public abstract class Entity {
     public int x;
     public int y;
     public int speed;
-
+    public Shape hitbox = new Rectangle(x,y,16,16);
+    public boolean alive = true;
     public BufferedImage front;
     public BufferedImage up1;
     public BufferedImage up2;
@@ -41,21 +44,27 @@ public abstract class Entity {
 
     public Entity() {}
 
-    //TODO; Find out whether this is necessary, as this is an abstract class
-    public Entity(int x , int y , String imagepath, int s) {
+    //TODO; Find out whether this is necessary, as this is an abstract class 
 
-        this.x = x;
-        this.y = y;
-
-        try {
-            this.front = ImageIO.read(getClass().getResource(imagepath));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    /* constructor unneeded */
 
     public void update() {}
     
     public void draw(Graphics2D g2) {}
+    public boolean CollidesWith(Entity e) {
+        return this.hitbox.getBounds2D().intersects(e.hitbox.getBounds2D());
+    }
 
+    public void OnCollision(Entity e) {
+
+    }
+
+    public BufferedImage imgHelper(String filePath) {
+        try {
+            return ImageIO.read(getClass().getResourceAsStream(filePath));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
