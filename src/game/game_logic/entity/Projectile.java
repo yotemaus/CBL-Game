@@ -35,10 +35,17 @@ public class Projectile extends Entity{
                 break;
         }
         this.hitbox = new Ellipse2D.Double(x + 8, y + 8, 16, 16); 
+        if (768<this.x || this.x<0) {
+            this.alive =false;
+        }
+        if (432<this.y || this.y<0)  {
+            this.alive = false;
+        }
     }
     @Override
     public void draw(Graphics2D g) {
         g.drawOval(x, y, 16, 16);
     }
+
 
 }

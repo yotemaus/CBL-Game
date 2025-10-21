@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
 public class Player extends Entity {
 
     private final GamePanel panel;
-    private final KeyHandler keyH;
+    public final KeyHandler keyH;
 
     /**
      * Constructor.
@@ -63,21 +63,24 @@ public class Player extends Entity {
      */
     @Override
     public void update() {
-        if (keyH.upPressed) {
+        if (keyH.WPressed) {
             y -= speed;
             direction = "up";
-        } else if (keyH.downPressed) {
+        } else if (keyH.SPressed) {
             y += speed;
             direction = "down";
-        } else if (keyH.leftPressed) {
+        } else if (keyH.APressed) {
             x -= speed;
             direction = "left";
-        } else if (keyH.rightPressed) {
+        } else if (keyH.DPressed) {
             x += speed;
             direction = "right";
         }
+        if (keyH.uppressed) {
+            
+        }
 
-        if (keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
+        if (keyH.WPressed || keyH.SPressed || keyH.APressed || keyH.DPressed) {
             spriteCounter++;
 
             if (spriteCounter > 6) {
