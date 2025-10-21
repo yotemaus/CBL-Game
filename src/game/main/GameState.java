@@ -1,6 +1,6 @@
 package game.main;
 
-import game.game_logic.CollisionManager;
+import game.game_logic.collision.CollisionManager;
 import game.game_logic.entity.Enemy;
 import game.game_logic.entity.Entity;
 import game.game_logic.entity.Player;
@@ -17,7 +17,7 @@ public class GameState {
 
     private final Player player;
     private final List<Entity> entities = new ArrayList<>();
-    private CollisionManager collisionManager;
+    private final CollisionManager collisionManager;
 
     /**
      * Constructor.
@@ -27,7 +27,8 @@ public class GameState {
     public GameState(GamePanel panel, KeyHandler keyH) {
         this.player = new Player(panel, keyH);
         entities.add(player);
-        entities.add(new Enemy(0,0,player));
+        entities.add(new Enemy(0,0, player));
+        this.collisionManager = new CollisionManager();
     }
 
     /**
