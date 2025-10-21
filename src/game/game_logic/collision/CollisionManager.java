@@ -17,9 +17,9 @@ public class CollisionManager {
             Entity e1 = entities.get(i);
             for (int j = i + 1; j < entities.size(); j++) {
                 Entity e2 = entities.get(j);
-                if (e1.CollidesWith(e2)) {
-                    e1.OnCollision(e2);
-                    e2.OnCollision(e1);
+                if (e1.collidesWith(e2)) {
+                    e1.onCollision(e2);
+                    e2.onCollision(e1);
                 }
             }
         }
