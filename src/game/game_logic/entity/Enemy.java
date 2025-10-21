@@ -9,7 +9,7 @@ public class Enemy extends Entity {
 
     private Player player;
     public int health;
-    public boolean alive;
+    public boolean alive = true;
 
     @Override
     public void update() {
@@ -45,5 +45,14 @@ public class Enemy extends Entity {
     public void draw(Graphics2D g) {
         g.drawRect(x, y, 16, 16);
         
+    }
+
+    @Override
+    public void onCollision(Entity e) {
+        if (e instanceof Projectile) {
+            System.out.println("should be dead rn");
+            System.err.println(this.alive);
+            this.alive = false;
+        }
     }
 }

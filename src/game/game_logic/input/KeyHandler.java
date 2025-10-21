@@ -8,27 +8,42 @@ import java.awt.event.KeyListener;
  */
 public class KeyHandler implements KeyListener {
 
-    public boolean upPressed;
-    public boolean downPressed;
-    public boolean leftPressed;
-    public boolean rightPressed;
-
+    public boolean WPressed;
+    public boolean SPressed;
+    public boolean APressed;
+    public boolean DPressed;
+    public boolean uppressed;
+    public boolean downpressed; 
+    public boolean rightpressed; 
+    public boolean leftpressed; 
     @Override
     public void keyPressed(KeyEvent e) {
 
         int code = e.getKeyCode();
 
         if (code == KeyEvent.VK_W) {
-            upPressed = true;
+            WPressed = true;
         }
         if (code == KeyEvent.VK_A) {
-            leftPressed = true;
+            APressed = true;
         }
         if (code == KeyEvent.VK_S) {
-            downPressed = true;
+            SPressed = true;
         }
         if (code == KeyEvent.VK_D) {
-            rightPressed = true;
+            DPressed = true;
+        }
+        if (code == KeyEvent.VK_UP) {
+            uppressed =true;
+        }
+        if (code == KeyEvent.VK_DOWN) {
+            downpressed = true;
+        }
+        if (code == KeyEvent.VK_LEFT) {
+            leftpressed = true;
+        }
+        if (code == KeyEvent.VK_RIGHT) {
+            rightpressed = true;
         }
     }
 
@@ -38,16 +53,16 @@ public class KeyHandler implements KeyListener {
         int code = e.getKeyCode();
 
         if (code == KeyEvent.VK_W) {
-            upPressed = false;
+            WPressed = false;
         }
         if (code == KeyEvent.VK_A) {
-            leftPressed = false;
+            APressed = false;
         }
         if (code == KeyEvent.VK_S) {
-            downPressed = false;
+            SPressed = false;
         }
         if (code == KeyEvent.VK_D) {
-            rightPressed = false;
+            DPressed = false;
         }
     }
 
