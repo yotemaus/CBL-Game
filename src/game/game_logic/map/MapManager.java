@@ -18,8 +18,6 @@ public class MapManager {
     int currentY;
     TileManager tileM;
 
-    private String[][] world;
-
     public MapManager(Player player, GamePanel panel, TileManager tileM) {
         this.player = player;
         this.panel = panel; 

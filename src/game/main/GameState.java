@@ -8,13 +8,10 @@ import game.game_logic.entity.Player;
 import game.game_logic.entity.Projectile;
 import game.game_logic.input.KeyHandler;
 import game.game_logic.map.MapManager;
-import game.game_logic.tile.TileManager;
 import game.ui.GamePanel;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 /**
  * Contains an array of every entiry to so each can be sequentially update once per frame.
@@ -38,6 +35,7 @@ public class GameState {
         entities.add(player);
         entities.add(new Enemy(0, 0, player));
         this.collisionManager = new CollisionManager();
+        this.projectileManager = new ProjectileManager(keyH, player);
         this.mapManager = new MapManager(player, panel, panel.tileM);
     }
 
