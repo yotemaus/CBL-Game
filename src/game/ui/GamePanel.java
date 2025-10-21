@@ -23,7 +23,7 @@ public class GamePanel extends JPanel {
     public final int screenWidth = maxScreenCol * tileSize;
     public final int screenHeight = maxScreenRow * tileSize;
 
-    private final TileManager tileM = new TileManager(this);
+    public final TileManager tileM = new TileManager(this);
     private final KeyHandler keyH = new KeyHandler();
     private final GameState gameState = new GameState(this, keyH);
 

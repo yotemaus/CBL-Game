@@ -5,6 +5,8 @@ import game.game_logic.entity.Enemy;
 import game.game_logic.entity.Entity;
 import game.game_logic.entity.Player;
 import game.game_logic.input.KeyHandler;
+import game.game_logic.map.MapManager;
+import game.game_logic.tile.TileManager;
 import game.ui.GamePanel;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ public class GameState {
     private final Player player;
     private final List<Entity> entities = new ArrayList<>();
     private final CollisionManager collisionManager;
+    private final MapManager mapManager;
 
     /**
      * Constructor.
@@ -29,6 +32,7 @@ public class GameState {
         entities.add(player);
         entities.add(new Enemy(0, 0, player));
         this.collisionManager = new CollisionManager();
+        this.mapManager = new MapManager(player, panel, panel.tileM);
     }
 
     /**
@@ -42,6 +46,7 @@ public class GameState {
             }
         }
         collisionManager.checkCollisions(entities);
+        mapManager.updateMap();
     }
 
     /**

@@ -17,7 +17,7 @@ public abstract class Entity {
     public int x;
     public int y;
     public int speed;
-    public Shape hitbox = new Rectangle(x,y,16,16);
+    public Shape hitbox = new Rectangle(x, y, 16, 16);
     public boolean alive = true;
     public BufferedImage front;
     public BufferedImage up1;
@@ -41,12 +41,6 @@ public abstract class Entity {
 
     public int spriteCounter = 0;
     public int spriteNum = 1;
-
-    public Entity() {}
-
-    //TODO; Find out whether this is necessary, as this is an abstract class 
-
-    /* constructor unneeded */
 
     public void update() {}
     

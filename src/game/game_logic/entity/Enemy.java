@@ -27,9 +27,10 @@ public class Enemy extends Entity {
         if (health == 0) {
             alive = false;
         }
-        this.hitbox = new Rectangle(this.x,this.y,16,16);
+        this.hitbox = new Rectangle(this.x, this.y, 16, 16);
 
     }   
+
     private int[] destination;
 
     public Enemy(int px, int py, Player player) {
@@ -37,7 +38,7 @@ public class Enemy extends Entity {
         this.y = py;
         this.player = player;
         this.speed = 2;
-        this.hitbox=new Rectangle(px,py,16,16);
+        this.hitbox = new Rectangle(px, py, 16, 16);
     }
 
 

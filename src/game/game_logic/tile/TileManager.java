@@ -30,7 +30,7 @@ public class TileManager {
         mapTileNum = new int[panel.maxScreenRow][panel.maxScreenCol];
 
         getTileImage();
-        loadMap();
+        loadMap("/maps/0_0.txt");
     }
 
     /**
@@ -116,18 +116,18 @@ public class TileManager {
      * Read the text file with the map template where numbers represent array indexes.
      * 
      */
-    public void loadMap() {
+    public void loadMap(String path) {
         try {
-            InputStream is = getClass().getResourceAsStream("/maps/map1.txt");
+            InputStream is = getClass().getResourceAsStream(path);
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
             int row = 0;
             int col = 0;
 
-            while(col < panel.maxScreenCol && row < panel.maxScreenRow) {
+            while (col < panel.maxScreenCol && row < panel.maxScreenRow) {
                 
                 String line = br.readLine();
                 //Parse row of map into integers
-                while(col < panel.maxScreenCol) {
+                while (col < panel.maxScreenCol) {
                     
                     String[] numbers = line.split(" ");
                     int num = Integer.parseInt(numbers[col]);
