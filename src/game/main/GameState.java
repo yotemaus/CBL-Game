@@ -27,7 +27,7 @@ public class GameState {
     public GameState(GamePanel panel, KeyHandler keyH) {
         this.player = new Player(panel, keyH);
         entities.add(player);
-        entities.add(new Enemy(0,0, player));
+        entities.add(new Enemy(0, 0, player));
         this.collisionManager = new CollisionManager();
     }
 

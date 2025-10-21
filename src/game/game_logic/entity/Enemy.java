@@ -4,10 +4,13 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.lang.Math;
 
+
 public class Enemy extends Entity {
+
     private Player player;
     public int health;
     public boolean alive;
+
     @Override
     public void update() {
         this.destination = new int[] {player.x, player.y};

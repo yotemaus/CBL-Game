@@ -51,14 +51,20 @@ public abstract class Entity {
     public void update() {}
     
     public void draw(Graphics2D g2) {}
-    public boolean CollidesWith(Entity e) {
+
+    public boolean collidesWith(Entity e) {
         return this.hitbox.getBounds2D().intersects(e.hitbox.getBounds2D());
     }
 
-    public void OnCollision(Entity e) {
+    public void onCollision(Entity e) {
 
     }
 
+    /**
+     * Helpern function for getting the enemy sprite.
+     * @param filePath path to the image file.
+     * @return buffered image of enemy sprite.
+     */
     public BufferedImage imgHelper(String filePath) {
         try {
             return ImageIO.read(getClass().getResourceAsStream(filePath));

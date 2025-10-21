@@ -4,8 +4,6 @@ import game.game_logic.input.KeyHandler;
 import game.ui.GamePanel;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 
 /**
  * A character that is controllable by the player.
@@ -29,14 +27,12 @@ public class Player extends Entity {
         y = panel.screenHeight / 2 - panel.tileSize / 2;
         direction = "down";
         speed = 4;
-        this.hitbox = new Rectangle(this.x,this.y,16,16);
+        this.hitbox = new Rectangle(this.x, this.y, 16, 16);
 
-        LoadPlayerImage();
+        loadPlayerImage();
     }
 
-    
-
-    private void LoadPlayerImage() {
+    private void loadPlayerImage() {
 
         up1 = imgHelper("/sprites/player/player_W_walk_1.png");
         up2 = imgHelper("/sprites/player/player_W_walk_2.png");
