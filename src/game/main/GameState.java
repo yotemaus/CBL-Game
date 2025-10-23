@@ -62,12 +62,12 @@ public class GameState {
             if (newProjectile != null) {
                 entities.add(newProjectile);
                 player.isShooting = true;
-            cooldown_counter = attack_cd_frames;
-        }
+                cooldown_counter = attack_cd_frames;
+            }
         }
         if(cooldown_counter>0) {
             cooldown_counter--;
-        } else if (cooldown_counter == 0 ){
+        } else if (cooldown_counter == 0 ) {
             player.isShooting = false;
         }
         

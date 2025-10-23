@@ -17,6 +17,9 @@ public class Player extends Entity {
     public boolean isShooting = false;
     private Timer cooldownTimer;
     private type[] allTypes = {type.rock, type.paper, type.scissors};
+    public BufferedImage rockImg;
+    public BufferedImage scissorImg;
+    public BufferedImage paperImg;
 
     /**
      * Constructor.
@@ -93,9 +96,9 @@ public class Player extends Entity {
             } else if (this.playerType == type.scissors) {
                 this.playerType = type.rock;
             }
-            }
+        }
         
-        keyH.spacetapped= false;
+        keyH.spacetapped = false;
 
         if (keyH.WPressed || keyH.SPressed || keyH.APressed || keyH.DPressed) {
             spriteCounter++;
