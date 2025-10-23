@@ -8,9 +8,9 @@ import java.lang.Math;
 public class Enemy extends Entity {
 
     private Player player;
-    public int health;
-    public boolean alive = true;
+    public int health = 100;
 
+    
     @Override
     public void update() {
         this.destination = new int[] {player.x, player.y};
@@ -25,15 +25,15 @@ public class Enemy extends Entity {
             y -= speed;
         }
         if (health == 0) {
-            alive = false;
+            this.alive = false;
         }
         this.hitbox = new Rectangle(this.x, this.y, 16, 16);
-
     }   
 
     private int[] destination;
 
     public Enemy(int px, int py, Player player) {
+        this.alive = true;
         this.x = px;
         this.y = py;
         this.player = player;

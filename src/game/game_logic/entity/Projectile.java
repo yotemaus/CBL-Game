@@ -3,6 +3,7 @@ package game.game_logic.entity;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 
+
 public class Projectile extends Entity{
     String direction;
     public Projectile(int px, int py, String pdirection) {
@@ -12,7 +13,7 @@ public class Projectile extends Entity{
         this.direction = pdirection;
         this.hitbox = new Ellipse2D.Double(x + 8, y + 8, 16, 16); 
         this.speed = 12;
-
+        this.alive = true;
     }
 
     @Override
@@ -46,6 +47,11 @@ public class Projectile extends Entity{
     public void draw(Graphics2D g) {
         g.drawOval(x, y, 16, 16);
     }
-
+    @Override
+    public void onCollision(Entity e) {
+        if (e instanceof Enemy) {
+            this.alive = false;
+        }
+    }
 
 }

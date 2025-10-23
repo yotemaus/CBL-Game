@@ -18,7 +18,7 @@ public abstract class Entity {
     public int y;
     public int speed;
     public Shape hitbox = new Rectangle(x, y, 16, 16);
-    public boolean alive = true;
+    public boolean alive;
     public BufferedImage front;
     public BufferedImage up1;
     public BufferedImage up2;

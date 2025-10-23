@@ -20,7 +20,7 @@ public class Player extends Entity {
      * @param keyH KeyHandler to listen to player inpots to control the player.
      */
     public Player(GamePanel panel, KeyHandler keyH) {
-
+        this.alive = true;
         this.panel = panel;
         this.keyH = keyH;
         x = panel.screenWidth / 2 - panel.tileSize / 2;
