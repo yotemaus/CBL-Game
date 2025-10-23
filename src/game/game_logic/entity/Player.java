@@ -4,14 +4,19 @@ import game.game_logic.input.KeyHandler;
 import game.ui.GamePanel;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-
+import javax.swing.Timer;
+import game.game_logic.*;
 /**
  * A character that is controllable by the player.
  */
 public class Player extends Entity {
-
+    public type playerType;
     private final GamePanel panel;
     public final KeyHandler keyH;
+    public int score;
+    public boolean isShooting = false;
+    private Timer cooldownTimer;
+    private type[] allTypes = {type.rock, type.paper, type.scissors};
 
     /**
      * Constructor.
@@ -20,6 +25,9 @@ public class Player extends Entity {
      * @param keyH KeyHandler to listen to player inpots to control the player.
      */
     public Player(GamePanel panel, KeyHandler keyH) {
+        this.playerType = type.paper;
+        this.cooldownTimer = new Timer(500, null);
+        cooldownTimer.setRepeats(false);
         this.alive = true;
         this.panel = panel;
         this.keyH = keyH;
@@ -28,7 +36,7 @@ public class Player extends Entity {
         direction = "down";
         speed = 4;
         this.hitbox = new Rectangle(this.x, this.y, 16, 16);
-
+        
         loadPlayerImage();
     }
 
@@ -63,6 +71,7 @@ public class Player extends Entity {
      */
     @Override
     public void update() {
+        System.out.println(playerType);
         if (keyH.WPressed) {
             y -= speed;
             direction = "up";
@@ -76,9 +85,17 @@ public class Player extends Entity {
             x += speed;
             direction = "right";
         }
-        if (keyH.uppressed) {
-            
-        }
+        if (keyH.spacetapped) {
+            if (this.playerType == type.rock) {
+                this.playerType = type.paper;
+            } else if (this.playerType == type.paper) {
+                this.playerType = type.scissors;
+            } else if (this.playerType == type.scissors) {
+                this.playerType = type.rock;
+            }
+            }
+        
+        keyH.spacetapped= false;
 
         if (keyH.WPressed || keyH.SPressed || keyH.APressed || keyH.DPressed) {
             spriteCounter++;

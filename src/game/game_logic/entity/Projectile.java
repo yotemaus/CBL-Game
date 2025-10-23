@@ -1,15 +1,21 @@
 package game.game_logic.entity;
 
+import game.game_logic.*;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 
+import javax.crypto.ExemptionMechanism;
+
 
 public class Projectile extends Entity{
-    String direction;
-    public Projectile(int px, int py, String pdirection) {
 
-        this.x=px;
-        this.y=py;
+    String direction;
+    public type projectiletype;
+
+    public Projectile(int px, int py, String pdirection, type type) {
+        this.projectiletype = type;
+        this.x = px;
+        this.y = py;
         this.direction = pdirection;
         this.hitbox = new Ellipse2D.Double(x + 8, y + 8, 16, 16); 
         this.speed = 12;
@@ -50,7 +56,12 @@ public class Projectile extends Entity{
     @Override
     public void onCollision(Entity e) {
         if (e instanceof Enemy) {
-            this.alive = false;
+            Enemy enemy = (Enemy) e;
+            if (weakto.get(enemy.enemType) == this.projectiletype) {
+                this.alive = false;
+            }
+
+            
         }
     }
 

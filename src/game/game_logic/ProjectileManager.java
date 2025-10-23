@@ -5,30 +5,36 @@ import game.game_logic.input.*;
 public class ProjectileManager {
     private KeyHandler keyH;
     private Player player;
+    private String direction;
+
 
     public ProjectileManager(KeyHandler kh , Player pl) {
         this.keyH = kh;
         this.player = pl;
     }
-    public Projectile newProjectile() {
-        if (keyH.uppressed) {
-            keyH.uppressed = false;
-            return new Projectile(this.player.x, this.player.y, "up");
 
+    public Projectile newProjectile(type Ptype) {
+        
+        if (keyH.uppressed) {
+
+            return new Projectile(player.x , player.y , "up" , Ptype);
         }
         if (keyH.downpressed) {
-            keyH.downpressed = false;
-            return new Projectile(this.player.x, this.player.y, "down");
+
+            return new Projectile(player.x , player.y , "down" , Ptype);
         }
         if (keyH.leftpressed) {
-            keyH.leftpressed = false;
-            return new Projectile(this.player.x, this.player.y, "left");
+
+            return new Projectile(player.x , player.y , "left" , Ptype);
         }
         if (keyH.rightpressed) {
-            keyH.rightpressed = false;
-            return new Projectile(this.player.x, this.player.y, "right");
+
+            return new Projectile(player.x , player.y , "right" , Ptype);
+        } else {
+            return null;
         }
-        return null;
+        
+        
     }
 
 }

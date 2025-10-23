@@ -5,7 +5,12 @@ import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.imageio.ImageIO;
+
+import game.game_logic.type;
 
 /**
  * An abstract class that acts as a template for the player, enemies and interactable objects.
@@ -19,6 +24,8 @@ public abstract class Entity {
     public int speed;
     public Shape hitbox = new Rectangle(x, y, 16, 16);
     public boolean alive;
+    public Map<type, type> weakto = Map.of(type.rock, 
+        type.paper, type.paper, type.scissors, type.scissors, type.rock);
     public BufferedImage front;
     public BufferedImage up1;
     public BufferedImage up2;

@@ -1,5 +1,6 @@
 package game.game_logic.entity;
 
+import game.game_logic.type;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.lang.Math;
@@ -9,8 +10,8 @@ public class Enemy extends Entity {
 
     private Player player;
     public int health = 100;
+    public type enemType;
 
-    
     @Override
     public void update() {
         this.destination = new int[] {player.x, player.y};
@@ -32,7 +33,8 @@ public class Enemy extends Entity {
 
     private int[] destination;
 
-    public Enemy(int px, int py, Player player) {
+    public Enemy(int px, int py, Player player, type type) {
+        this.enemType = type;
         this.alive = true;
         this.x = px;
         this.y = py;
@@ -51,9 +53,10 @@ public class Enemy extends Entity {
     @Override
     public void onCollision(Entity e) {
         if (e instanceof Projectile) {
-            System.out.println("should be dead rn");
-            System.err.println(this.alive);
-            this.alive = false;
+            Projectile proj = (Projectile) e;
+            if (weakto.get(this.enemType) == proj.projectiletype) {
+                this.alive = false;
+            }
         }
     }
 }

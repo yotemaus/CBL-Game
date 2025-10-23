@@ -8,6 +8,7 @@ import game.game_logic.entity.Player;
 import game.game_logic.entity.Projectile;
 import game.game_logic.input.KeyHandler;
 import game.game_logic.map.MapManager;
+import game.game_logic.type;
 import game.ui.GamePanel;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
@@ -24,6 +25,8 @@ public class GameState {
     private final MapManager mapManager;
     private final ProjectileManager projectileManager;
     List<Entity> removedEntities = new ArrayList<Entity>();
+    private final int attack_cd_frames = 30;
+    private int cooldown_counter = 0;
 
     /**
      * Constructor.
@@ -33,7 +36,7 @@ public class GameState {
     public GameState(GamePanel panel, KeyHandler keyH) {
         this.player = new Player(panel, keyH);
         entities.add(player);
-        entities.add(new Enemy(0, 0, player));
+        entities.add(new Enemy(0, 0, player, type.rock));
         this.collisionManager = new CollisionManager();
         this.projectileManager = new ProjectileManager(keyH, player);
         this.mapManager = new MapManager(player, panel, panel.tileM);
@@ -47,13 +50,29 @@ public class GameState {
         for (Entity e : entities) {
             e.update();
             if (!(e.alive)) {
+                if (e instanceof Enemy) {
+                    player.score++;
+                }
                 removedEntities.add(e);
             }
         }
-        Projectile newProjectile = projectileManager.newProjectile();
-        if (newProjectile != null) {
-            entities.add(newProjectile);
+
+        if (!player.isShooting) {
+            Projectile newProjectile = projectileManager.newProjectile(player.playerType);
+            if (newProjectile != null) {
+                entities.add(newProjectile);
+                player.isShooting = true;
+            cooldown_counter = attack_cd_frames;
         }
+        }
+        if(cooldown_counter>0) {
+            cooldown_counter--;
+        } else if (cooldown_counter == 0 ){
+            player.isShooting = false;
+        }
+        
+        
+        
         entities.removeAll(removedEntities);
         removedEntities.clear();
 

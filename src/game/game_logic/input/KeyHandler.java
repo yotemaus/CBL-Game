@@ -1,5 +1,6 @@
 package game.game_logic.input;
 
+import java.awt.RenderingHints.Key;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -16,6 +17,8 @@ public class KeyHandler implements KeyListener {
     public boolean downpressed; 
     public boolean rightpressed; 
     public boolean leftpressed; 
+    public boolean spacepressed;
+    public boolean spacetapped;
     @Override
     public void keyPressed(KeyEvent e) {
 
@@ -34,7 +37,7 @@ public class KeyHandler implements KeyListener {
             DPressed = true;
         }
         if (code == KeyEvent.VK_UP) {
-            uppressed =true;
+            uppressed = true;
         }
         if (code == KeyEvent.VK_DOWN) {
             downpressed = true;
@@ -45,6 +48,10 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_RIGHT) {
             rightpressed = true;
         }
+        if (code == KeyEvent.VK_SPACE) {
+            spacepressed = true;
+        }
+
     }
 
     @Override
@@ -64,11 +71,29 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_D) {
             DPressed = false;
         }
+        if (code == KeyEvent.VK_UP) {
+            uppressed = false;
+        }
+        if (code == KeyEvent.VK_DOWN) {
+            downpressed = false;
+        }
+        if (code == KeyEvent.VK_LEFT) {
+            leftpressed = false;
+        }
+        if (code == KeyEvent.VK_RIGHT) {
+            rightpressed = false;
+        }
+        if (code == KeyEvent.VK_SPACE) {
+            if (spacepressed) {
+                spacetapped = true;
+            }
+            spacepressed = false;
+        }
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-
+        
     }
     
 }
