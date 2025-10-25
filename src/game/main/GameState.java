@@ -1,11 +1,11 @@
 package game.main;
 
-import game.game_logic.ProjectileManager;
 import game.game_logic.collision.CollisionManager;
 import game.game_logic.entity.Enemy;
 import game.game_logic.entity.Entity;
 import game.game_logic.entity.Player;
 import game.game_logic.entity.Projectile;
+import game.game_logic.entity.ProjectileManager;
 import game.game_logic.input.KeyHandler;
 import game.game_logic.map.MapManager;
 import game.game_logic.type;

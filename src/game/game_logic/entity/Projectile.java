@@ -4,7 +4,6 @@ import game.game_logic.*;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
-import game.game_logic.ProjectileManager;
 
 public class Projectile extends Entity{
 
