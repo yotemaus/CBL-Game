@@ -109,8 +109,6 @@ public class MapManager {
         int newMapId = switchMap();
 
         if (currentMapId != newMapId) {
-            System.out.println("SWITCHING TO: " + newMapId);
-            System.out.println("LOADING " + MAP_ID.get(newMapId));
             tileM.loadMap(MAP_ID.get(newMapId));
             enemyM.loadEnemiesOnMap(newMapId);
             currentMapId = newMapId;

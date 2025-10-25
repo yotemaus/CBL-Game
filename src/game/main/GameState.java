@@ -51,7 +51,6 @@ public class GameState {
      * Update every entity in the array.
      */
     public void update() {
-        collisionManager.checkCollisions(entities);
 
         for (Entity e : entities) {
             e.update();
@@ -65,7 +64,7 @@ public class GameState {
 
         for (Entity e : enemyManager.enemiesLoaded) {
             e.update();
-            if (!(e.alive)) {
+            if (!e.alive) {
                 if (e instanceof Enemy) {
                     player.score++;
                 }
@@ -86,12 +85,17 @@ public class GameState {
         } else if (cooldown_counter == 0 ) {
             player.isShooting = false;
         }
-        
+
+        List<Entity> collidables = new ArrayList<>(entities);
+        collidables.addAll(enemyManager.enemiesLoaded);
+        collisionManager.checkCollisions(collidables);
+
         entities.removeAll(removedEntities);
+        enemyManager.enemiesLoaded.removeIf(e -> removedEntities.contains(e) || !e.alive);
         removedEntities.clear();
 
         mapManager.updateMap();
-        hud.update(player.playerType,player.health);
+        hud.update(player.playerType, player.health);
     }
 
     /**

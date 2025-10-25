@@ -19,7 +19,7 @@ public class EnemyManager {
     private GamePanel gp;
     private Player player;
     private List<Integer> clearMaps = new ArrayList<>();
-    public List<Enemy> enemiesLoaded = new ArrayList<>();
+    public List<Entity> enemiesLoaded = new ArrayList<>();
 
     private static final Map<Integer, String> ID_SPAWNS = Map.of(
         0, "/maps/spawn_positions/-1_1_spawns.txt",
@@ -78,7 +78,7 @@ public class EnemyManager {
                 x = 0;
                 for (int col = 0; col < spawnPositions[row].length; col++) {
                     if (spawnPositions[row][col] != 0) {
-                        enemiesLoaded.add(new Enemy(x, y, player, type.rock, 100));
+                        enemiesLoaded.add(new Enemy(x, y, player, type.rock, 1));
                     }
                     x += gp.tileSize;
                 }
