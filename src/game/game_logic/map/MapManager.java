@@ -1,11 +1,9 @@
 package game.game_logic.map;
 
+import java.util.Map;
 import game.game_logic.entity.Player;
-import game.ui.GamePanel;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.BufferedReader;
 import game.game_logic.tile.TileManager;
+import game.ui.GamePanel;
 
 /**
  * Cheks players position to see if it is out of bounds, then loads new map.
@@ -14,19 +12,40 @@ public class MapManager {
     
     Player player;
     GamePanel panel;
-    int currentX;
-    int currentY;
+    int currentMapId;
     TileManager tileM;
-
+    private static final Map<Integer, String> MAP_ID = Map.of(
+        0, "/maps/-1_1.txt",
+        1, "/maps/0_1.txt",
+        2, "/maps/1_1.txt",
+        3, "/maps/-1_0.txt",
+        4, "/maps/0_0.txt",
+        5, "/maps/1_0.txt",
+        6, "/maps/-1_-1.txt",
+        7, "/maps/0_-1.txt",
+        8, "/maps/1_-1.txt"
+    );
+    private static final Integer[][] MAP_CONNECTIONS = {
+        // Order: {up, down, left, right - null for no connection}
+        {null, 3, null, 1},
+        {null, 4, 0, 2},
+        {null, 5, 1, null},
+        {0, 6, null, 4},
+        {1, 7, 3, 5},
+        {2, 8, 4, null},
+        {3, null, null, 7},
+        {4, null, 6, 8},
+        {5, null, 7, null}
+    };
+    
     public MapManager(Player player, GamePanel panel, TileManager tileM) {
         this.player = player;
         this.panel = panel; 
-        this.currentX = 0;
-        this.currentY = 0;
+        this.currentMapId = 4;
         this.tileM = tileM;
     }
 
-    private String exitDirection() {
+    private String checkExitDirection() {
 
         String exitDirection = ""; 
         int playerRight = player.x + panel.tileSize;
@@ -45,51 +64,51 @@ public class MapManager {
         return exitDirection;
     }
 
-    private String switchMap() {
+    private Integer switchMap() {
     
         boolean playerOffScreen = player.x >= panel.screenWidth 
             || player.x + panel.tileSize <= 0
             || player.y + panel.tileSize <= 0 
             || player.y >= panel.screenHeight;
 
-        int newX = 0;
-        int newY = 0;
+        int newMapId = 0;
 
         if (playerOffScreen) {
-            switch (exitDirection()) {
+            switch (checkExitDirection()) {
                 case ("RIGHT"):
-                    newX = currentX + 1;
+                    newMapId = MAP_CONNECTIONS[currentMapId][3];
                     player.x = player.x - panel.screenWidth;
                     break;
                 case ("LEFT"):
-                    newX = currentX - 1;
+                    newMapId = MAP_CONNECTIONS[currentMapId][2];
                     player.x = player.x + panel.screenWidth;
                     break;
                 case ("UP"):
-                    newY = currentY + 1;
+                    newMapId = MAP_CONNECTIONS[currentMapId][0];
                     player.y = player.y + panel.screenHeight;
                     break;
                 case ("DOWN"):
-                    newY = currentY - 1;
+                    newMapId = MAP_CONNECTIONS[currentMapId][1];
                     player.y = player.y - panel.screenHeight;
                     break;
-                default: { };
+                default: {
+                    break;
+                }
             }
-            currentX = newX;
-            currentY = newY;
-            return "/maps/" + newX + "_" + newY + ".txt";
+            return newMapId;
         }
-        return "/maps/" + currentX + "_" + currentY + ".txt";
+        return currentMapId;
     }
 
     public void updateMap() {
 
-        String currentPath = "/maps/" + currentX + "_" + currentY + ".txt";
-        String newPath = switchMap();
+        int newMapId = switchMap();
 
-        if (!(currentPath.equals(newPath))) {
-            System.out.println(newPath);
-            tileM.loadMap(newPath);
+        if (currentMapId != newMapId) {
+            System.out.println("SWITCHING TO: " + newMapId);
+            System.out.println("LOADING " + MAP_ID.get(newMapId));
+            tileM.loadMap(MAP_ID.get(newMapId));
+            currentMapId = newMapId;
         }
     }
 } 

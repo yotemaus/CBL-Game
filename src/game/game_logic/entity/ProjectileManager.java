@@ -1,12 +1,10 @@
-package game.game_logic;
+package game.game_logic.entity;
 
+import game.game_logic.input.*;
+import game.game_logic.type;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
-
-import game.game_logic.entity.*;
-import game.game_logic.input.*;
 
 public class ProjectileManager {
     private KeyHandler keyH;
@@ -14,7 +12,6 @@ public class ProjectileManager {
     private BufferedImage rockImg;
     private BufferedImage paperImg;
     private BufferedImage scissorImg;
-
 
     public ProjectileManager(KeyHandler kh , Player pl) {
         this.keyH = kh;

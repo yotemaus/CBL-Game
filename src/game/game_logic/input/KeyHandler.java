@@ -1,6 +1,5 @@
 package game.game_logic.input;
 
-import java.awt.RenderingHints.Key;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -9,10 +8,10 @@ import java.awt.event.KeyListener;
  */
 public class KeyHandler implements KeyListener {
 
-    public boolean WPressed;
-    public boolean SPressed;
-    public boolean APressed;
-    public boolean DPressed;
+    public boolean wPressed;
+    public boolean sPressed;
+    public boolean aPressed;
+    public boolean dPressed;
     public boolean uppressed;
     public boolean downpressed; 
     public boolean rightpressed; 
@@ -25,16 +24,16 @@ public class KeyHandler implements KeyListener {
         int code = e.getKeyCode();
 
         if (code == KeyEvent.VK_W) {
-            WPressed = true;
+            wPressed = true;
         }
         if (code == KeyEvent.VK_A) {
-            APressed = true;
+            aPressed = true;
         }
         if (code == KeyEvent.VK_S) {
-            SPressed = true;
+            sPressed = true;
         }
         if (code == KeyEvent.VK_D) {
-            DPressed = true;
+            dPressed = true;
         }
         if (code == KeyEvent.VK_UP) {
             uppressed = true;
@@ -60,16 +59,16 @@ public class KeyHandler implements KeyListener {
         int code = e.getKeyCode();
 
         if (code == KeyEvent.VK_W) {
-            WPressed = false;
+            wPressed = false;
         }
         if (code == KeyEvent.VK_A) {
-            APressed = false;
+            aPressed = false;
         }
         if (code == KeyEvent.VK_S) {
-            SPressed = false;
+            sPressed = false;
         }
         if (code == KeyEvent.VK_D) {
-            DPressed = false;
+            dPressed = false;
         }
         if (code == KeyEvent.VK_UP) {
             uppressed = false;
