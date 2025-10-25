@@ -20,7 +20,7 @@ public class Projectile extends Entity{
         this.x = px;
         this.y = py;
         this.direction = pdirection;
-        this.hitbox = new Ellipse2D.Double(x + 8, y + 8, 16, 16); 
+        this.hitbox = new Ellipse2D.Double(x + 8, y + 8, 32, 32); 
         this.speed = 12;
         this.alive = true;
         this.rockImg = rockImg;
@@ -46,7 +46,7 @@ public class Projectile extends Entity{
             default:
                 break;
         }
-        this.hitbox = new Ellipse2D.Double(x + 8, y + 8, 16, 16); 
+        this.hitbox = new Ellipse2D.Double(x + 8, y + 8, 32, 32); 
         if (768 < this.x || this.x < 0) {
             this.alive = false;
         }
@@ -76,10 +76,7 @@ public class Projectile extends Entity{
     @Override
     public void onCollision(Entity e) {
         if (e instanceof Enemy) {
-            Enemy enemy = (Enemy) e;
-            if (weakto.get(enemy.enemType) == this.projectiletype) {
-                this.alive = false;
-            }
+            this.alive = false;
         }
     }
 }

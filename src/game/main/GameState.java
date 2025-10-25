@@ -10,6 +10,8 @@ import game.game_logic.input.KeyHandler;
 import game.game_logic.map.MapManager;
 import game.game_logic.type;
 import game.ui.GamePanel;
+import game.ui.Hud;
+
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +26,7 @@ public class GameState {
     private final CollisionManager collisionManager;
     private final MapManager mapManager;
     private final ProjectileManager projectileManager;
+    private final Hud hud;
     List<Entity> removedEntities = new ArrayList<Entity>();
     private final int attack_cd_frames = 30;
     private int cooldown_counter = 0;
@@ -40,6 +43,7 @@ public class GameState {
         this.collisionManager = new CollisionManager();
         this.projectileManager = new ProjectileManager(keyH, player);
         this.mapManager = new MapManager(player, panel, panel.tileM);
+        this.hud = new Hud(panel);
     }
 
     /**
@@ -77,6 +81,7 @@ public class GameState {
         removedEntities.clear();
 
         mapManager.updateMap();
+        hud.update(player.playerType);
     }
 
     /**
@@ -86,6 +91,7 @@ public class GameState {
     public void render(Graphics2D g2) {
         for (Entity e : entities) {
             e.draw(g2);
-        }  
+        }
+        hud.draw(g2);  
     }
 }

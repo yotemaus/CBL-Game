@@ -74,7 +74,6 @@ public class Player extends Entity {
      */
     @Override
     public void update() {
-        System.out.println(playerType);
         if (keyH.WPressed) {
             y -= speed;
             direction = "up";
