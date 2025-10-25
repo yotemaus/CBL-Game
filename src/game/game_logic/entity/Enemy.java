@@ -11,6 +11,8 @@ public class Enemy extends Entity {
     private Player player;
     public int health = 100;
     public type enemType;
+    public int onMap; //the map thie enemy is bound to
+    private int[] destination;
 
     @Override
     public void update() {
@@ -31,8 +33,6 @@ public class Enemy extends Entity {
         this.hitbox = new Rectangle(this.x, this.y, 16, 16);
     }   
 
-    private int[] destination;
-
     public Enemy(int px, int py, Player player, type type) {
         this.enemType = type;
         this.alive = true;
@@ -42,7 +42,6 @@ public class Enemy extends Entity {
         this.speed = 2;
         this.hitbox = new Rectangle(px, py, 16, 16);
     }
-
 
     @Override
     public void draw(Graphics2D g) {

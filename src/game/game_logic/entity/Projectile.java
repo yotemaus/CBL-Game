@@ -5,9 +5,8 @@ import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 
-public class Projectile extends Entity{
-
-    String direction;
+public class Projectile extends Entity {
+    
     public type projectiletype;
     BufferedImage rockImg;
     BufferedImage paperImg;

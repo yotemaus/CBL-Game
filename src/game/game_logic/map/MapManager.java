@@ -1,9 +1,10 @@
 package game.game_logic.map;
 
-import java.util.Map;
+import game.game_logic.entity.EnemyManager;
 import game.game_logic.entity.Player;
 import game.game_logic.tile.TileManager;
 import game.ui.GamePanel;
+import java.util.Map;
 
 /**
  * Cheks players position to see if it is out of bounds, then loads new map.
@@ -14,6 +15,8 @@ public class MapManager {
     GamePanel panel;
     int currentMapId;
     TileManager tileM;
+    EnemyManager enemyM;
+
     private static final Map<Integer, String> MAP_ID = Map.of(
         0, "/maps/-1_1.txt",
         1, "/maps/0_1.txt",
@@ -38,11 +41,12 @@ public class MapManager {
         {5, null, 7, null}
     };
     
-    public MapManager(Player player, GamePanel panel, TileManager tileM) {
+    public MapManager(Player player, GamePanel panel, TileManager tileM, EnemyManager enemyM) {
         this.player = player;
         this.panel = panel; 
         this.currentMapId = 4;
         this.tileM = tileM;
+        this.enemyM = enemyM;
     }
 
     private String checkExitDirection() {
@@ -108,6 +112,7 @@ public class MapManager {
             System.out.println("SWITCHING TO: " + newMapId);
             System.out.println("LOADING " + MAP_ID.get(newMapId));
             tileM.loadMap(MAP_ID.get(newMapId));
+            enemyM.loadEnemiesOnMap(newMapId);
             currentMapId = newMapId;
         }
     }

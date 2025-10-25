@@ -126,10 +126,10 @@ public class TileManager {
             while (col < panel.maxScreenCol && row < panel.maxScreenRow) {
                 
                 String line = br.readLine();
+                String[] numbers = line.split(" ");
                 //Parse row of map into integers
                 while (col < panel.maxScreenCol) {
                     
-                    String[] numbers = line.split(" ");
                     int num = Integer.parseInt(numbers[col]);
 
                     mapTileNum[row][col] = num;

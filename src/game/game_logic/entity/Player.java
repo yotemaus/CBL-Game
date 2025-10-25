@@ -1,11 +1,11 @@
 package game.game_logic.entity;
 
+import game.game_logic.*;
 import game.game_logic.input.KeyHandler;
 import game.ui.GamePanel;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.swing.Timer;
-import game.game_logic.*;
 
 /**
  * A character that is controllable by the player.

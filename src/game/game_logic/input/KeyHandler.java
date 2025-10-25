@@ -18,6 +18,7 @@ public class KeyHandler implements KeyListener {
     public boolean leftpressed; 
     public boolean spacepressed;
     public boolean spacetapped;
+    
     @Override
     public void keyPressed(KeyEvent e) {
 

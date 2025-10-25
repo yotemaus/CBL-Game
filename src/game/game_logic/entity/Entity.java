@@ -6,11 +6,8 @@ import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 import javax.imageio.ImageIO;
-
-
 
 /**
  * An abstract class that acts as a template for the player, enemies and interactable objects.

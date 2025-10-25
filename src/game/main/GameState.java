@@ -11,7 +11,7 @@ import game.game_logic.map.MapManager;
 import game.game_logic.type;
 import game.ui.GamePanel;
 import game.ui.Hud;
-
+import game.game_logic.entity.EnemyManager;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +26,7 @@ public class GameState {
     private final CollisionManager collisionManager;
     private final MapManager mapManager;
     private final ProjectileManager projectileManager;
+    private final EnemyManager enemyManager;
     private final Hud hud;
     List<Entity> removedEntities = new ArrayList<Entity>();
     private final int attack_cd_frames = 30;
@@ -39,11 +40,12 @@ public class GameState {
     public GameState(GamePanel panel, KeyHandler keyH) {
         this.player = new Player(panel, keyH);
         entities.add(player);
-        entities.add(new Enemy(0, 0, player, type.rock));
         this.collisionManager = new CollisionManager();
         this.projectileManager = new ProjectileManager(keyH, player);
-        this.mapManager = new MapManager(player, panel, panel.tileM);
+        this.enemyManager = new EnemyManager(panel, player);
+        this.mapManager = new MapManager(player, panel, panel.tileM, enemyManager);
         this.hud = new Hud(panel);
+        enemyManager.loadEnemiesOnMap(5);
     }
 
     /**
@@ -51,7 +53,18 @@ public class GameState {
      */
     public void update() {
         collisionManager.checkCollisions(entities);
+
         for (Entity e : entities) {
+            e.update();
+            if (!(e.alive)) {
+                if (e instanceof Enemy) {
+                    player.score++;
+                }
+                removedEntities.add(e);
+            }
+        }
+
+        for (Entity e : enemyManager.enemiesLoaded) {
             e.update();
             if (!(e.alive)) {
                 if (e instanceof Enemy) {
@@ -69,13 +82,11 @@ public class GameState {
                 cooldown_counter = attack_cd_frames;
             }
         }
-        if(cooldown_counter>0) {
+        if (cooldown_counter > 0) {
             cooldown_counter--;
         } else if (cooldown_counter == 0 ) {
             player.isShooting = false;
         }
-        
-        
         
         entities.removeAll(removedEntities);
         removedEntities.clear();
@@ -90,6 +101,9 @@ public class GameState {
      */
     public void render(Graphics2D g2) {
         for (Entity e : entities) {
+            e.draw(g2);
+        }
+        for (Entity e : enemyManager.enemiesLoaded) {
             e.draw(g2);
         }
         hud.draw(g2);  
