@@ -39,7 +39,7 @@ public class GameState {
     public GameState(GamePanel panel, KeyHandler keyH) {
         this.player = new Player(panel, keyH);
         entities.add(player);
-        entities.add(new Enemy(0, 0, player, type.rock));
+        entities.add(new Enemy(0, 0, player, type.rock, 3));
         this.collisionManager = new CollisionManager();
         this.projectileManager = new ProjectileManager(keyH, player);
         this.mapManager = new MapManager(player, panel, panel.tileM);
@@ -81,7 +81,7 @@ public class GameState {
         removedEntities.clear();
 
         mapManager.updateMap();
-        hud.update(player.playerType);
+        hud.update(player.playerType,player.health);
     }
 
     /**
