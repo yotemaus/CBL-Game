@@ -1,8 +1,6 @@
 package game.game_logic.map;
 
-
 import java.util.Map;
-
 import game.game_logic.entity.Player;
 import game.game_logic.tile.TileManager;
 import game.ui.GamePanel;
@@ -35,7 +33,7 @@ public class MapManager {
         {0, 6, null, 4},
         {1, 7, 3, 5},
         {2, 8, 4, null},
-        {3, null, null,7},
+        {3, null, null, 7},
         {4, null, 6, 8},
         {5, null, 7, null}
     };

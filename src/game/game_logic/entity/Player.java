@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.swing.Timer;
 import game.game_logic.*;
+
 /**
  * A character that is controllable by the player.
  */
@@ -74,16 +75,16 @@ public class Player extends Entity {
      */
     @Override
     public void update() {
-        if (keyH.WPressed) {
+        if (keyH.wPressed) {
             y -= speed;
             direction = "up";
-        } else if (keyH.SPressed) {
+        } else if (keyH.sPressed) {
             y += speed;
             direction = "down";
-        } else if (keyH.APressed) {
+        } else if (keyH.aPressed) {
             x -= speed;
             direction = "left";
-        } else if (keyH.DPressed) {
+        } else if (keyH.dPressed) {
             x += speed;
             direction = "right";
         }
@@ -99,7 +100,7 @@ public class Player extends Entity {
         
         keyH.spacetapped = false;
 
-        if (keyH.WPressed || keyH.SPressed || keyH.APressed || keyH.DPressed) {
+        if (keyH.wPressed || keyH.sPressed || keyH.aPressed || keyH.dPressed) {
             spriteCounter++;
 
             if (spriteCounter > 6) {
@@ -122,8 +123,7 @@ public class Player extends Entity {
         
         BufferedImage image = null;
 
-        switch(direction) {
-            
+        switch (direction) {
             case "up":
                 if (spriteNum == 1) {
                     image = up1;
@@ -180,7 +180,9 @@ public class Player extends Entity {
                     image = right4;
                 }
                 break;
-            }
+            default:
+                break;
+        }
 
         g2.drawImage(image, x, y, panel.tileSize, panel.tileSize, null);
     }
