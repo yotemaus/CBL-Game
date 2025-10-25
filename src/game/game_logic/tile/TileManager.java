@@ -204,8 +204,14 @@ public class TileManager {
     }
 
     private int tileIndexAtPixel(int px, int py) {
+        if (px < 0 || py < 0) {
+            return -1;
+        }
         int col = px / panel.tileSize;
         int row = py / panel.tileSize;
+        if (row < 0 || col < 0 || row >= panel.maxScreenRow || col >= panel.maxScreenCol) { 
+            return -1;
+        }
         return mapTileNum[row][col];
     }
 
@@ -219,9 +225,9 @@ public class TileManager {
 
         for (int[] c : corners) {
             int idx = tileIndexAtPixel(c[0], c[1]);
-            if (idx == -1) {
-                return true; 
-            }                 
+            if (idx < 0 || idx >= tile.length) {
+                return false;
+            }
             if (tile[idx].collision) {
                 return true;   
             }

@@ -73,19 +73,45 @@ public class Player extends Entity {
      */
     @Override
     public void update() {
+        int size = panel.tileSize;
+
         if (keyH.wPressed) {
-            y -= speed;
-            direction = "up";
+            int newY = y - speed;
+            if (!panel.tileM.isBlockedRect(x, newY, size, size)) {
+                y = newY;
+                direction = "up";
+            }
         } else if (keyH.sPressed) {
-            y += speed;
-            direction = "down";
+            int newY = y + speed;
+            if (!panel.tileM.isBlockedRect(x, newY, size, size)) {
+                y = newY;
+                direction = "down";
+            }
         } else if (keyH.aPressed) {
-            x -= speed;
-            direction = "left";
+            int newX = x - speed;
+            if (!panel.tileM.isBlockedRect(newX, y, size, size)) {
+                x = newX;
+                direction = "left";
+            }
         } else if (keyH.dPressed) {
-            x += speed;
-            direction = "right";
+            int newX = x + speed;
+            if (!panel.tileM.isBlockedRect(newX, y, size, size)) {
+                x = newX;
+                direction = "right";
+            }
         }
+
+        if (keyH.wPressed || keyH.sPressed || keyH.aPressed || keyH.dPressed) {
+            spriteCounter++;
+            if (spriteCounter > 6) {
+                spriteNum++;
+                if (spriteNum > 4) spriteNum = 1;
+                spriteCounter = 0;
+            }
+        }
+
+        this.hitbox = new Rectangle(this.x, this.y, size, size);
+
         if (keyH.spacetapped) {
             if (this.playerType == type.rock) {
                 this.playerType = type.paper;
@@ -97,19 +123,6 @@ public class Player extends Entity {
         }
         
         keyH.spacetapped = false;
-
-        if (keyH.wPressed || keyH.sPressed || keyH.aPressed || keyH.dPressed) {
-            spriteCounter++;
-
-            if (spriteCounter > 6) {
-                spriteNum++;
-                if (spriteNum > 4) {
-                    spriteNum = 1;
-                }
-                spriteCounter = 0;
-            }
-        }
-        this.hitbox = new Rectangle(this.x, this.y, 16, 16);
     }
     @Override
     public void onCollision(Entity e) {
