@@ -18,10 +18,8 @@ public class Player extends Entity {
     public boolean isShooting = false;
     private Timer cooldownTimer;
     private type[] allTypes = {type.rock, type.paper, type.scissors};
-    public BufferedImage rockImg;
-    public BufferedImage scissorImg;
-    public BufferedImage paperImg;
 
+    public int health;
     /**
      * Constructor.
      * 
@@ -40,7 +38,7 @@ public class Player extends Entity {
         direction = "down";
         speed = 4;
         this.hitbox = new Rectangle(this.x, this.y, 16, 16);
-        
+        this.health = 3;
         loadPlayerImage();
     }
 
@@ -113,7 +111,12 @@ public class Player extends Entity {
         }
         this.hitbox = new Rectangle(this.x, this.y, 16, 16);
     }
-
+    @Override
+    public void onCollision(Entity e) {
+        if (e instanceof Enemy) {
+            health--;
+        }
+    }
     /**
      * Matches walking direction and current spriteNumber to the saved sprite png to create 
      * animation.

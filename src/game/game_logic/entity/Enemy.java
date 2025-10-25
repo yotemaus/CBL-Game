@@ -9,7 +9,7 @@ import java.lang.Math;
 public class Enemy extends Entity {
 
     private Player player;
-    public int health = 100;
+    public int health;
     public type enemType;
     public int onMap; //the map thie enemy is bound to
     private int[] destination;
@@ -33,7 +33,8 @@ public class Enemy extends Entity {
         this.hitbox = new Rectangle(this.x, this.y, 16, 16);
     }   
 
-    public Enemy(int px, int py, Player player, type type) {
+    public Enemy(int px, int py, Player player, type type, int health) {
+        this.health = health;
         this.enemType = type;
         this.alive = true;
         this.x = px;
@@ -54,8 +55,11 @@ public class Enemy extends Entity {
         if (e instanceof Projectile) {
             Projectile proj = (Projectile) e;
             if (weakto.get(this.enemType) == proj.projectiletype) {
-                this.alive = false;
+                this.health--;
             }
+        }
+        if (e instanceof Player) {
+            this.alive = false;
         }
     }
 }

@@ -14,7 +14,9 @@ public class Hud {
     private BufferedImage rockImg;
     private BufferedImage paperImg;
     private BufferedImage squareImg;
-    HashMap<type, int[]> typemap = new HashMap<>();
+    private BufferedImage heartImg;
+    private int playerhealth;
+    HashMap<type,int[]> typemap = new HashMap<>();
     int[] squarepos = new int[2];
 
     public Hud(GamePanel panel) {
@@ -23,6 +25,7 @@ public class Hud {
         this.rockImg = imgHelper("/sprites/projectiles/rock.png");
         this.paperImg = imgHelper("/sprites/projectiles/paper.png");
         this.squareImg = imgHelper("/ui/square.png");
+        this.heartImg = imgHelper("/ui/heart.png");
         typemap.put(type.rock, new int[] {panel.screenWidth - 100, 10});
         typemap.put(type.paper, new int[] {panel.screenWidth - 50, 10});
         typemap.put(type.scissors, new int[] {panel.screenWidth - 150, 10});
@@ -41,9 +44,9 @@ public class Hud {
             return null;
         }
     }
-
-    public void update(type playerType) {
+    public void update(type playerType, int playerhealth) {
         this.squarepos = typemap.get(playerType);
+        this.playerhealth = playerhealth;
     }
 
     public void draw(Graphics2D g2) {
@@ -53,6 +56,9 @@ public class Hud {
         g2.drawImage(rockImg,
               panel.screenWidth - 100, 10, 48, 48, null);
         g2.drawImage(paperImg,
-              panel.screenWidth - 150, 10, 48, 48, null);
+              panel.screenWidth-150, 10, 48,48, null);
+        for (int i = 1; i <= this.playerhealth; i++) {
+            g2.drawImage(heartImg, i*50, 10,48,48,null);
+        }
     }
 }

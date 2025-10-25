@@ -92,7 +92,7 @@ public class GameState {
         removedEntities.clear();
 
         mapManager.updateMap();
-        hud.update(player.playerType);
+        hud.update(player.playerType,player.health);
     }
 
     /**
