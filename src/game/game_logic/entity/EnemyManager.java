@@ -79,7 +79,6 @@ public class EnemyManager {
                 for (int col = 0; col < spawnPositions[row].length; col++) {
                     if (spawnPositions[row][col] != 0) {
                         enemiesLoaded.add(new Enemy(x, y, player, type.rock, 100));
-                        System.out.println("Enemy spawned at" + x + y);
                     }
                     x += gp.tileSize;
                 }

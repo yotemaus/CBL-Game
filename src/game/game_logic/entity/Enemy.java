@@ -16,7 +16,7 @@ public class Enemy extends Entity {
 
     @Override
     public void update() {
-        this.destination = new int[] {player.x, player.y};
+            this.destination = new int[] {player.x, player.y};
         if (Math.floorDiv(x, 3) > Math.floorDiv(destination[0], 3)) {
             x -= speed;
         } else {

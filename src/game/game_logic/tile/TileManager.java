@@ -26,7 +26,7 @@ public class TileManager {
 
         this.panel = panel;
 
-        tile = new Tile[20];
+        tile = new Tile[24];
         mapTileNum = new int[panel.maxScreenRow][panel.maxScreenCol];
 
         getTileImage();
@@ -106,7 +106,36 @@ public class TileManager {
             tile[16] = new Tile();
             tile[16].image = ImageIO.read(getClass().getResourceAsStream(
                 "/tiles/path/Path_Tile_center.png"));
-            
+
+            tile[17] = new Tile();
+            tile[17].image = ImageIO.read(getClass().getResourceAsStream(
+                "/tiles/water/water_tile0.png"));
+
+            tile[18] = new Tile();
+            tile[18].image = ImageIO.read(getClass().getResourceAsStream(
+                "/tiles/water/water_tile1.png"));
+
+            tile[19] = new Tile();
+            tile[19].image = ImageIO.read(getClass().getResourceAsStream(
+                "/tiles/water/water_tile2.png"));
+
+            tile[20] = new Tile();
+            tile[20].image = ImageIO.read(getClass().getResourceAsStream(
+                "/tiles/water/water_tile3.png"));
+
+            tile[21] = new Tile();
+            tile[21].image = ImageIO.read(getClass().getResourceAsStream(
+                "/tiles/water/water_tile4.png"));
+            tile[21].collision = true;
+                
+            tile[22] = new Tile();
+            tile[22].image = ImageIO.read(getClass().getResourceAsStream(
+                "/tiles/water/water_tile6.png"));
+
+            tile[23] = new Tile();
+            tile[23].image = ImageIO.read(getClass().getResourceAsStream(
+                "/tiles/water/water_tile7.png"));
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -173,5 +202,30 @@ public class TileManager {
 
         }
     }
-    
+
+    private int tileIndexAtPixel(int px, int py) {
+        int col = px / panel.tileSize;
+        int row = py / panel.tileSize;
+        return mapTileNum[row][col];
+    }
+
+    public boolean isBlockedRect(int x, int y, int w, int h) {
+        int[][] corners = {
+            {x, y},
+            {x + w - 1, y},
+            {x, y + h - 1},
+            {x + w - 1, y + h - 1}
+        };
+
+        for (int[] c : corners) {
+            int idx = tileIndexAtPixel(c[0], c[1]);
+            if (idx == -1) {
+                return true; 
+            }                 
+            if (tile[idx].collision) {
+                return true;   
+            }
+        }
+        return false;    
+    }
 }

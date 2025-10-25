@@ -45,7 +45,6 @@ public class GameState {
         this.enemyManager = new EnemyManager(panel, player);
         this.mapManager = new MapManager(player, panel, panel.tileM, enemyManager);
         this.hud = new Hud(panel);
-        enemyManager.loadEnemiesOnMap(5);
     }
 
     /**
