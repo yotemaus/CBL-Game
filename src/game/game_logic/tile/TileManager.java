@@ -26,7 +26,7 @@ public class TileManager {
 
         this.panel = panel;
 
-        tile = new Tile[24];
+        tile = new Tile[28];
         mapTileNum = new int[panel.maxScreenRow][panel.maxScreenCol];
 
         getTileImage();
@@ -130,11 +130,35 @@ public class TileManager {
                 
             tile[22] = new Tile();
             tile[22].image = ImageIO.read(getClass().getResourceAsStream(
-                "/tiles/water/water_tile6.png"));
+                "/tiles/water/water_tile5.png"));
+            tile[22].collision = true;
 
             tile[23] = new Tile();
             tile[23].image = ImageIO.read(getClass().getResourceAsStream(
                 "/tiles/water/water_tile7.png"));
+            tile[23].collision = true;
+
+            tile[24] = new Tile();
+            tile[24].image = ImageIO.read(getClass().getResourceAsStream(
+                "/tiles/water/water_corner0.png"));
+            tile[24].collision = true;
+
+            tile[25] = new Tile();
+            tile[25].image = ImageIO.read(getClass().getResourceAsStream(
+                "/tiles/water/water_corner1.png"));
+            tile[25].collision = true;
+
+            tile[26] = new Tile();
+            tile[26].image = ImageIO.read(getClass().getResourceAsStream(
+                "/tiles/water/water_corner2.png"));
+            tile[26].collision = true;
+
+            tile[27] = new Tile();
+            tile[27].image = ImageIO.read(getClass().getResourceAsStream(
+                "/tiles/water/water_corner3.png"));
+            tile[27].collision = true;
+
+
 
         } catch (IOException e) {
             e.printStackTrace();
