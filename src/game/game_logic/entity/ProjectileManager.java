@@ -51,7 +51,7 @@ public class ProjectileManager {
         if (keyH.rightpressed) {
 
             return new Projectile(player.x , player.y , "right" , Ptype, 
-            rockImg, paperImg, paperImg);
+            rockImg, paperImg, scissorImg);
         } else {
             return null;
         }
