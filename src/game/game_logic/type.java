@@ -1,6 +1,9 @@
 package game.game_logic;
 
-public enum type {
+/**
+ * player type so it can be accessed easily instead of using strings.
+ */
+public enum Type {
     rock,
     paper,
     scissors

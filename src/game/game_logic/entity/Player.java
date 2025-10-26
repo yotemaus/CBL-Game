@@ -1,6 +1,6 @@
 package game.game_logic.entity;
 
-import game.game_logic.*;
+import game.game_logic.Type;
 import game.game_logic.input.KeyHandler;
 import game.ui.GamePanel;
 import java.awt.*;
@@ -11,13 +11,12 @@ import javax.swing.Timer;
  * A character that is controllable by the player.
  */
 public class Player extends Entity {
-    public type playerType;
+    public Type playerType;
     private final GamePanel panel;
     public final KeyHandler keyH;
     public static int score;
     public boolean isShooting = false;
     private Timer cooldownTimer;
-    private type[] allTypes = {type.rock, type.paper, type.scissors};
     public int health;
 
     /**
@@ -27,7 +26,7 @@ public class Player extends Entity {
      * @param keyH KeyHandler to listen to player inpots to control the player.
      */
     public Player(GamePanel panel, KeyHandler keyH) {
-        this.playerType = type.paper;
+        this.playerType = Type.paper;
         this.cooldownTimer = new Timer(500, null);
         cooldownTimer.setRepeats(false);
         this.alive = true;
@@ -105,25 +104,31 @@ public class Player extends Entity {
             spriteCounter++;
             if (spriteCounter > 6) {
                 spriteNum++;
-                if (spriteNum > 4) spriteNum = 1;
-                spriteCounter = 0;
+                if (spriteNum > 4)  {
+                    spriteNum = 1;
+                    spriteCounter = 0;
+                }
             }
         }
 
         this.hitbox = new Rectangle(this.x, this.y, size, size);
 
         if (keyH.spacetapped) {
-            if (this.playerType == type.rock) {
-                this.playerType = type.paper;
-            } else if (this.playerType == type.paper) {
-                this.playerType = type.scissors;
-            } else if (this.playerType == type.scissors) {
-                this.playerType = type.rock;
+            if (this.playerType == Type.rock) {
+                this.playerType = Type.paper;
+            } else if (this.playerType == Type.paper) {
+                this.playerType = Type.scissors;
+            } else if (this.playerType == Type.scissors) {
+                this.playerType = Type.rock;
             }
         }
         
         keyH.spacetapped = false;
+        if (health == 0) {
+            this.alive = false;
+        }
     }
+    
     @Override
     public void onCollision(Entity e) {
         if (e instanceof Enemy) {
@@ -131,12 +136,7 @@ public class Player extends Entity {
         }
     }
 
-    public boolean checkAlive() {
-        if (health == 0) {
-            this.alive = false;
-        }
-        return alive;
-    }
+
 
     /**
      * Matches walking direction and current spriteNumber to the saved sprite png to create 

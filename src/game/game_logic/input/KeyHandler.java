@@ -2,7 +2,6 @@ package game.game_logic.input;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import game.main.GameLoop;
 
 /**
  * Allows the game to monitor keyboard inpots for the player to interact with the game.

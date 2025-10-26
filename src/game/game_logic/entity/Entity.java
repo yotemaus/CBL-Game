@@ -1,6 +1,6 @@
 package game.game_logic.entity;
 
-import game.game_logic.type;
+import game.game_logic.Type;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.Shape;
@@ -21,8 +21,8 @@ public abstract class Entity {
     public int speed;
     public Shape hitbox = new Rectangle(x, y, 16, 16);
     public boolean alive;
-    public Map<type, type> weakto = Map.of(type.rock,
-        type.paper, type.paper, type.scissors, type.scissors, type.rock);
+    public Map<Type, Type> weakto = Map.of(Type.rock,
+        Type.paper, Type.paper, Type.scissors, Type.scissors, Type.rock);
     public BufferedImage front;
     public BufferedImage up1;
     public BufferedImage up2;

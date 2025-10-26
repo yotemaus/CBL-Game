@@ -1,17 +1,22 @@
 package game.game_logic.entity;
 
-import game.game_logic.type;
+import game.game_logic.Type;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.lang.Math;
 
-
+/**
+ * Enemy class which is a subclass of the abstract class entity it ll be used for any enemies which 
+ * the player has to kill.
+ * 
+ * 
+ */
 public class Enemy extends Entity {
 
     private Player player;
     public int health;
-    public type enemType;
+    public Type enemType;
     public int onMap; //the map thie enemy is bound toaaaa
     private int[] destination;
     private BufferedImage rockEnemy = imgHelper("/sprites/projectiles/rock.png");
@@ -21,7 +26,7 @@ public class Enemy extends Entity {
 
     @Override
     public void update() {
-            this.destination = new int[] {player.x, player.y};
+        this.destination = new int[] {player.x, player.y};
         if (Math.floorDiv(x, 3) > Math.floorDiv(destination[0], 3)) {
             x -= speed;
         } else {
@@ -38,7 +43,15 @@ public class Enemy extends Entity {
         this.hitbox = new Rectangle(this.x, this.y, 16, 16);
     }   
 
-    public Enemy(int px, int py, Player player, type type, int health) {
+    /**
+     *  Constructor for the enemy class.
+     * @param px the x coordinate for the enemy
+     * @param py the y coordinate for the enemy
+     * @param player player class so the destination can be retrieved from the player class
+     * @param type the type of enemy paper rock or scissors
+     * @param health health of enemy which dictates how many hits it takes before it dies
+     */
+    public Enemy(int px, int py, Player player, Type type, int health) {
         this.health = health * hpMultiplier;
         this.enemType = type;
         this.alive = true;
@@ -53,13 +66,13 @@ public class Enemy extends Entity {
     public void draw(Graphics2D g) {
         switch (this.enemType) {
             case rock:
-                g.drawImage(rockEnemy,  x, y,48,48,null);
+                g.drawImage(rockEnemy,  x, y, 48, 48, null);
                 break;
             case paper:
-                g.drawImage(paperEnemy,  x, y,48,48,null);
+                g.drawImage(paperEnemy,  x, y, 48, 48, null);
                 break;
             case scissors:
-                g.drawImage(scissorEnemy,  x, y,48,48,null);
+                g.drawImage(scissorEnemy,  x, y, 48, 48, null);
                 break;
         
             default:
@@ -72,7 +85,7 @@ public class Enemy extends Entity {
     public void onCollision(Entity e) {
         if (e instanceof Projectile) {
             Projectile proj = (Projectile) e;
-            if (weakto.get(this.enemType) == proj.projectiletype) {
+            if (weakto.get(this.enemType) == proj.projectileType) {
                 this.health--;
             }
         }
