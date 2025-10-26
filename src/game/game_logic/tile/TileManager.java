@@ -215,6 +215,14 @@ public class TileManager {
         return mapTileNum[row][col];
     }
 
+    /**
+     * checks if the tile is blocked.
+     * @param x x coordinate of the tile
+     * @param y y coordinate of the tile
+     * @param w width of the tile
+     * @param h height of the tile
+     * @return if the tile is blocked or not
+     */
     public boolean isBlockedRect(int x, int y, int w, int h) {
         int[][] corners = {
             {x, y},

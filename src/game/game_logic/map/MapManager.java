@@ -41,6 +41,13 @@ public class MapManager {
         {5, null, 7, null}
     };
     
+    /**
+     * Constructor for the map manager class instantiates the player panel tile and enemy manager.
+     * @param player player class so the player position can be used to adjust map
+     * @param panel panel class for the size to determine the bounds for the player
+     * @param tileM tile manager to load the tiles for each map
+     * @param enemyM loads the enemies of the current map into the enemy manager
+     */
     public MapManager(Player player, GamePanel panel, TileManager tileM, EnemyManager enemyM) {
         this.player = player;
         this.panel = panel; 
@@ -49,6 +56,9 @@ public class MapManager {
         this.enemyM = enemyM;
     }
 
+    /**
+     * adds a map to cleared maps if all the enemies are dead.
+     */
     public void addClearedMap() {
         if (!enemyM.clearMaps.contains(currentMapId) 
             && enemyM.enemiesLoaded.isEmpty()) {
@@ -111,6 +121,9 @@ public class MapManager {
         return currentMapId;
     }
 
+    /**
+     * updates the map if the player moves out of bounds.
+     */
     public void updateMap() {
 
         int newMapId = switchMap();
