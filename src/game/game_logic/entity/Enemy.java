@@ -17,6 +17,7 @@ public class Enemy extends Entity {
     private BufferedImage rockEnemy = imgHelper("/sprites/projectiles/rock.png");
     private BufferedImage paperEnemy = imgHelper("/sprites/projectiles/paper.png");
     private BufferedImage scissorEnemy = imgHelper("/sprites/projectiles/scissors.png");
+    public static int hpMultiplier = 1;
 
     @Override
     public void update() {
@@ -38,7 +39,7 @@ public class Enemy extends Entity {
     }   
 
     public Enemy(int px, int py, Player player, type type, int health) {
-        this.health = health;
+        this.health = health * hpMultiplier;
         this.enemType = type;
         this.alive = true;
         this.x = px;

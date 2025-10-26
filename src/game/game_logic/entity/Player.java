@@ -14,7 +14,7 @@ public class Player extends Entity {
     public type playerType;
     private final GamePanel panel;
     public final KeyHandler keyH;
-    public int score;
+    public static int score;
     public boolean isShooting = false;
     private Timer cooldownTimer;
     private type[] allTypes = {type.rock, type.paper, type.scissors};

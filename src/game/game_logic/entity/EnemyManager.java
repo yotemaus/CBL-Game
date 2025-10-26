@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import game.game_logic.type;
 import java.util.Random;
+import java.util.Set;
 
 /**
  * Spawns enemies on pre-determined locations on each map.
@@ -19,10 +20,10 @@ public class EnemyManager {
 
     private GamePanel gp;
     private Player player;
-    private List<Integer> clearMaps = new ArrayList<>();
+    public List<Integer> clearMaps = new ArrayList<>();
     public List<Entity> enemiesLoaded = new ArrayList<>();
     private Random random = new Random();
-    private type[] types = {type.rock,type.paper,type.scissors};
+    private type[] types = {type.rock, type.paper, type.scissors};
 
     private static final Map<Integer, String> ID_SPAWNS = Map.of(
         0, "/maps/spawn_positions/-1_1_spawns.txt",
@@ -38,7 +39,7 @@ public class EnemyManager {
 
     public EnemyManager(GamePanel gp, Player player) {
         this.gp = gp;
-        this.player = player;
+        this.player = player;     
     }
 
     private int[][] parseSpawnMap(String path) {
@@ -69,10 +70,10 @@ public class EnemyManager {
     }
 
     public void loadEnemiesOnMap(int mapId) {
+        enemiesLoaded.clear();
         if (!clearMaps.contains(mapId)) {
 
             int[][] spawnPositions = parseSpawnMap(ID_SPAWNS.get(mapId));
-            enemiesLoaded.clear();
 
             int x = 0;
             int y = 0;
@@ -81,12 +82,21 @@ public class EnemyManager {
                 x = 0;
                 for (int col = 0; col < spawnPositions[row].length; col++) {
                     if (spawnPositions[row][col] != 0) {
-                        enemiesLoaded.add(new Enemy(x, y, player, types[random.nextInt(3)], 1));
+                        enemiesLoaded.add(new Enemy(x, y, player, types[random.nextInt(3)], 3));
                     }
                     x += gp.tileSize;
                 }
                 y += gp.tileSize;
             }
+        }
+    }
+
+    public void resetClearMaps() {
+        Set<Integer> cleared = new java.util.HashSet<>(clearMaps);
+        if (cleared.containsAll(java.util.List.of(0, 1, 2, 3, 4, 5, 6, 7, 8))) {
+            clearMaps.clear();
+            Player.score++;
+            Enemy.hpMultiplier++;
         }
     }
 }

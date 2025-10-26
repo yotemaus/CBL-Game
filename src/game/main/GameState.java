@@ -11,7 +11,6 @@ import game.game_logic.input.KeyHandler;
 import game.game_logic.map.MapManager;
 import game.ui.GamePanel;
 import game.ui.Hud;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -35,7 +34,6 @@ public class GameState {
     List<Entity> removedEntities = new ArrayList<Entity>();
     private final int attackCdFrames = 30;
     private int cooldownCounter = 0;
-    private boolean paused = false;
 
     /**
      * Constructor.
@@ -73,9 +71,6 @@ public class GameState {
         for (Entity e : enemyManager.enemiesLoaded) {
             e.update();
             if (!e.alive) {
-                if (e instanceof Enemy) {
-                    player.score++;
-                }
                 removedEntities.add(e);
             }
         }
@@ -90,7 +85,7 @@ public class GameState {
         }
         if (cooldownCounter > 0) {
             cooldownCounter--;
-        } else if (cooldownCounter == 0 ) {
+        } else if (cooldownCounter == 0) {
             player.isShooting = false;
         }
 
@@ -101,7 +96,9 @@ public class GameState {
         entities.removeAll(removedEntities);
         enemyManager.enemiesLoaded.removeIf(e -> removedEntities.contains(e) || !e.alive);
         removedEntities.clear();
+        
 
+        mapManager.addClearedMap();
         mapManager.updateMap();
         hud.update(player.playerType, player.health);
     }
@@ -121,12 +118,7 @@ public class GameState {
         hud.draw(g2); 
         
         if (keyH.escPressed) {
-            g2.setColor(Color.WHITE);
-            g2.setFont(new Font("Arial", Font.BOLD, 100));
-            g2.drawString("PAUSED", 180,  panel.screenHeight / 2);
-            g2.setFont(new Font("Arial", Font.PLAIN, 20));
-            g2.drawString("Press ESC to resume.", 280,  panel.screenHeight / 2 + 30);
-            //g2.drawString("Health: " + player.health, 20, 60);
+            hud.drawPause(g2);
         }
     }
 }    

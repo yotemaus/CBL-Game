@@ -49,6 +49,13 @@ public class MapManager {
         this.enemyM = enemyM;
     }
 
+    public void addClearedMap() {
+        if (!enemyM.clearMaps.contains(currentMapId) 
+            && enemyM.enemiesLoaded.isEmpty()) {
+            enemyM.clearMaps.add(currentMapId);
+        }
+    }
+
     private String checkExitDirection() {
 
         String exitDirection = ""; 
@@ -111,6 +118,7 @@ public class MapManager {
         if (currentMapId != newMapId) {
             tileM.loadMap(MAP_ID.get(newMapId));
             enemyM.loadEnemiesOnMap(newMapId);
+            enemyM.resetClearMaps();
             currentMapId = newMapId;
         }
     }
