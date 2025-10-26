@@ -3,6 +3,7 @@ package game.game_logic.entity;
 import game.game_logic.type;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.lang.Math;
 
 
@@ -11,8 +12,11 @@ public class Enemy extends Entity {
     private Player player;
     public int health;
     public type enemType;
-    public int onMap; //the map thie enemy is bound to
+    public int onMap; //the map thie enemy is bound toaaaa
     private int[] destination;
+    private BufferedImage rockEnemy = imgHelper("/sprites/projectiles/rock.png");
+    private BufferedImage paperEnemy = imgHelper("/sprites/projectiles/paper.png");
+    private BufferedImage scissorEnemy = imgHelper("/sprites/projectiles/scissors.png");
 
     @Override
     public void update() {
@@ -40,13 +44,26 @@ public class Enemy extends Entity {
         this.x = px;
         this.y = py;
         this.player = player;
-        this.speed = 2;
+        this.speed = 1;
         this.hitbox = new Rectangle(px, py, 16, 16);
     }
 
     @Override
     public void draw(Graphics2D g) {
-        g.drawRect(x, y, 16, 16);
+        switch (this.enemType) {
+            case rock:
+                g.drawImage(rockEnemy,  x, y,48,48,null);
+                break;
+            case paper:
+                g.drawImage(paperEnemy,  x, y,48,48,null);
+                break;
+            case scissors:
+                g.drawImage(scissorEnemy,  x, y,48,48,null);
+                break;
+        
+            default:
+                break;
+        }
         
     }
 

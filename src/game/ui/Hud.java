@@ -27,8 +27,8 @@ public class Hud {
         this.squareImg = imgHelper("/ui/square.png");
         this.heartImg = imgHelper("/ui/heart.png");
         typemap.put(type.rock, new int[] {panel.screenWidth - 100, 10});
-        typemap.put(type.paper, new int[] {panel.screenWidth - 50, 10});
-        typemap.put(type.scissors, new int[] {panel.screenWidth - 150, 10});
+        typemap.put(type.paper, new int[] {panel.screenWidth - 150, 10});
+        typemap.put(type.scissors, new int[] {panel.screenWidth - 50, 10});
     }
 
     /**

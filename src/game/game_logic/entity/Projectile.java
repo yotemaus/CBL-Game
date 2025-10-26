@@ -2,6 +2,7 @@ package game.game_logic.entity;
 
 import game.game_logic.*;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 
@@ -18,7 +19,7 @@ public class Projectile extends Entity {
         this.x = px;
         this.y = py;
         this.direction = pdirection;
-        this.hitbox = new Ellipse2D.Double(x + 8, y + 8, 32, 32); 
+        this.hitbox = new Rectangle(x + 8, y + 8, 32, 32); 
         this.speed = 12;
         this.alive = true;
         this.rockImg = rockImg;
@@ -44,7 +45,7 @@ public class Projectile extends Entity {
             default:
                 break;
         }
-        this.hitbox = new Ellipse2D.Double(x + 8, y + 8, 32, 32); 
+        this.hitbox = new Rectangle(x + 8, y + 8, 32, 32); 
         if (768 < this.x || this.x < 0) {
             this.alive = false;
         }

@@ -21,7 +21,7 @@ public abstract class Entity {
     public int speed;
     public Shape hitbox = new Rectangle(x, y, 16, 16);
     public boolean alive;
-    public Map<type, type> weakto = Map.of(type.rock, 
+    public Map<type, type> weakto = Map.of(type.rock,
         type.paper, type.paper, type.scissors, type.scissors, type.rock);
     public BufferedImage front;
     public BufferedImage up1;

@@ -36,22 +36,22 @@ public class ProjectileManager {
         if (keyH.uppressed) {
 
             return new Projectile(player.x , player.y , "up" , Ptype, 
-            rockImg, scissorImg, paperImg);
+            rockImg, paperImg, scissorImg);
         }
         if (keyH.downpressed) {
 
             return new Projectile(player.x , player.y , "down" , Ptype,
-            rockImg, scissorImg, paperImg);
+            rockImg, paperImg, scissorImg);
         }
         if (keyH.leftpressed) {
 
             return new Projectile(player.x , player.y , "left" , Ptype, 
-            rockImg, scissorImg, paperImg);
+            rockImg, paperImg, scissorImg);
         }
         if (keyH.rightpressed) {
 
             return new Projectile(player.x , player.y , "right" , Ptype, 
-            rockImg, scissorImg, paperImg);
+            rockImg, paperImg, paperImg);
         } else {
             return null;
         }

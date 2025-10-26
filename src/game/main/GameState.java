@@ -55,9 +55,6 @@ public class GameState {
         for (Entity e : entities) {
             e.update();
             if (!(e.alive)) {
-                if (e instanceof Enemy) {
-                    player.score++;
-                }
                 removedEntities.add(e);
             }
         }
