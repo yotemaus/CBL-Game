@@ -104,10 +104,10 @@ public class Player extends Entity {
             spriteCounter++;
             if (spriteCounter > 6) {
                 spriteNum++;
-                if (spriteNum > 4)  {
+                if (spriteNum > 4) {
                     spriteNum = 1;
-                    spriteCounter = 0;
                 }
+                    spriteCounter = 0;
             }
         }
 
