@@ -18,8 +18,8 @@ public class Player extends Entity {
     public boolean isShooting = false;
     private Timer cooldownTimer;
     private type[] allTypes = {type.rock, type.paper, type.scissors};
-
     public int health;
+
     /**
      * Constructor.
      * 
@@ -130,6 +130,14 @@ public class Player extends Entity {
             health--;
         }
     }
+
+    public boolean checkAlive() {
+        if (health == 0) {
+            this.alive = false;
+        }
+        return alive;
+    }
+
     /**
      * Matches walking direction and current spriteNumber to the saved sprite png to create 
      * animation.

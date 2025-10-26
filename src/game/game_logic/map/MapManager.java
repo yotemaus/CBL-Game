@@ -13,8 +13,8 @@ public class MapManager {
     
     Player player;
     GamePanel panel;
-    int currentMapId;
-    TileManager tileM;
+    public int currentMapId;
+    public TileManager tileM;
     EnemyManager enemyM;
 
     private static final Map<Integer, String> MAP_ID = Map.of(

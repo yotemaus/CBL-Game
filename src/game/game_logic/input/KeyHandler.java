@@ -20,6 +20,7 @@ public class KeyHandler implements KeyListener {
     public boolean spacepressed;
     public boolean spacetapped;
     public boolean escPressed;
+    public boolean rPressed;
     
     @Override
     public void keyPressed(KeyEvent e) {
@@ -54,7 +55,10 @@ public class KeyHandler implements KeyListener {
             spacepressed = true;
         }
         if (code == KeyEvent.VK_ESCAPE) {
-            escPressed = !escPressed;
+            escPressed = !escPressed; 
+        }
+        if (code == KeyEvent.VK_R) {
+            rPressed = true;
         }
 
     }
@@ -93,6 +97,9 @@ public class KeyHandler implements KeyListener {
                 spacetapped = true;
             }
             spacepressed = false;
+        }
+        if (code == KeyEvent.VK_R) {
+            rPressed = false;
         }
 
     }

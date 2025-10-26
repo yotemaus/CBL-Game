@@ -57,6 +57,14 @@ public class Hud {
         g2.drawString("Press ESC to resume.", 280,  panel.screenHeight / 2 + 30);
     }
 
+    public void drawGameOver(Graphics2D g2) {
+        g2.setColor(Color.WHITE);
+        g2.setFont(new Font("Arial", Font.BOLD, 100));
+        g2.drawString("YOU DIED", 150,  panel.screenHeight / 2);
+        g2.setFont(new Font("Arial", Font.PLAIN, 20))   ;
+        g2.drawString("Press R to restart.", 310,  panel.screenHeight / 2 + 30);
+    }
+
     public void update(type playerType, int playerhealth) {
         this.squarepos = typemap.get(playerType);
         this.playerhealth = playerhealth;
@@ -72,7 +80,7 @@ public class Hud {
               panel.screenWidth - 150, 10, 48, 48, null);
         g2.setColor(Color.WHITE);
         g2.setFont(new Font("Arial", Font.PLAIN, 30));
-        g2.drawString("Rounds Cleared: " + Player.score, 270, 40);
+        g2.drawString("Rounds Cleared: " + Player.score, 260, 40);
         for (int i = 1; i <= this.playerhealth; i++) {
             g2.drawImage(heartImg, i * 50, 10, 48, 48, null);
         }

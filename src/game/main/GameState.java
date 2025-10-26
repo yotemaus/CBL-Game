@@ -34,6 +34,7 @@ public class GameState {
     List<Entity> removedEntities = new ArrayList<Entity>();
     private final int attackCdFrames = 30;
     private int cooldownCounter = 0;
+    private boolean gameOver = false;
 
     /**
      * Constructor.
@@ -52,10 +53,36 @@ public class GameState {
         this.hud = new Hud(panel);
     }
 
+    public void restartGame() {
+        player.health = 3;
+        player.alive = true;
+        Player.score = 0;
+        player.x = panel.screenWidth / 2 - panel.tileSize / 2;
+        player.y = panel.screenHeight / 2 - panel.tileSize / 2;
+        entities.clear();
+        entities.add(player);
+        removedEntities.clear();
+        mapManager.currentMapId = 4;
+        mapManager.tileM.loadMap("/maps/0_0.txt");
+        enemyManager.clearMaps.clear();
+        enemyManager.loadEnemiesOnMap(mapManager.currentMapId);
+        gameOver = false;
+        cooldownCounter = 0;
+    }
+
     /**
      * Update every entity in the array.
      */
     public void update() {
+
+        if (gameOver && keyH.rPressed) {
+            restartGame();
+        }
+
+        if (!player.checkAlive()) {
+            gameOver = true;
+            return;
+        }
 
         if (keyH.escPressed) {
             return;
@@ -119,6 +146,10 @@ public class GameState {
         
         if (keyH.escPressed) {
             hud.drawPause(g2);
+        }
+
+        if (gameOver) {
+            hud.drawGameOver(g2);
         }
     }
 }    
