@@ -22,8 +22,10 @@ public class ProjectileManager {
     private void loadProjectileImg() {
         try {
             rockImg = ImageIO.read(getClass().getResourceAsStream("/sprites/projectiles/rock.png"));
-            scissorImg = ImageIO.read(getClass().getResourceAsStream("/sprites/projectiles/scissors.png"));
-            paperImg = ImageIO.read(getClass().getResourceAsStream("/sprites/projectiles/paper.png"));
+            scissorImg = ImageIO.read(getClass().getResourceAsStream(
+                "/sprites/projectiles/scissors.png"));
+            paperImg = ImageIO.read(getClass().getResourceAsStream(
+                "/sprites/projectiles/paper.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
