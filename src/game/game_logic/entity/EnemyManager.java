@@ -1,5 +1,6 @@
 package game.game_logic.entity;
 
+import game.game_logic.Type;
 import game.ui.GamePanel;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,7 +9,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import game.game_logic.type;
 import java.util.Random;
 import java.util.Set;
 
@@ -23,7 +23,7 @@ public class EnemyManager {
     public List<Integer> clearMaps = new ArrayList<>();
     public List<Entity> enemiesLoaded = new ArrayList<>();
     private Random random = new Random();
-    private type[] types = {type.rock, type.paper, type.scissors};
+    private Type[] types = {Type.rock, Type.paper, Type.scissors};
 
     private static final Map<Integer, String> ID_SPAWNS = Map.of(
         0, "/maps/spawn_positions/-1_1_spawns.txt",
@@ -37,6 +37,11 @@ public class EnemyManager {
         8, "/maps/spawn_positions/1_-1_spawns.txt"
     );
 
+    /**
+     * Constructor for the enemy manager class.
+     * @param gp The gamepanel so the screen width and height can be obtained.
+     * @param player the player so the score is incremented
+     */
     public EnemyManager(GamePanel gp, Player player) {
         this.gp = gp;
         this.player = player;     
@@ -69,6 +74,10 @@ public class EnemyManager {
         return spawnPositions;
     }
 
+    /**
+     * Loads all the enemies onto the map.
+     * @param mapId The map id which the enemies need to be spawned on.
+     */
     public void loadEnemiesOnMap(int mapId) {
         enemiesLoaded.clear();
         if (!clearMaps.contains(mapId)) {
@@ -90,7 +99,10 @@ public class EnemyManager {
             }
         }
     }
-
+    
+    /**
+     * resets the clear maps.
+     */
     public void resetClearMaps() {
         Set<Integer> cleared = new java.util.HashSet<>(clearMaps);
         if (cleared.containsAll(java.util.List.of(0, 1, 2, 3, 4, 5, 6, 7, 8))) {

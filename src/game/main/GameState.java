@@ -1,7 +1,6 @@
 package game.main;
 
 import game.game_logic.collision.CollisionManager;
-import game.game_logic.entity.Enemy;
 import game.game_logic.entity.EnemyManager;
 import game.game_logic.entity.Entity;
 import game.game_logic.entity.Player;
@@ -11,8 +10,6 @@ import game.game_logic.input.KeyHandler;
 import game.game_logic.map.MapManager;
 import game.ui.GamePanel;
 import game.ui.Hud;
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,7 +49,10 @@ public class GameState {
         this.mapManager = new MapManager(player, panel, panel.tileM, enemyManager);
         this.hud = new Hud(panel);
     }
-
+    
+    /** 
+     * restarts the game.
+     */
     public void restartGame() {
         player.health = 3;
         player.alive = true;
@@ -79,7 +79,7 @@ public class GameState {
             restartGame();
         }
 
-        if (!player.checkAlive()) {
+        if (!player.alive) {
             gameOver = true;
             return;
         }
