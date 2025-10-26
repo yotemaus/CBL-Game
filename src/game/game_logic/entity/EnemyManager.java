@@ -91,7 +91,7 @@ public class EnemyManager {
                 x = 0;
                 for (int col = 0; col < spawnPositions[row].length; col++) {
                     if (spawnPositions[row][col] != 0) {
-                        enemiesLoaded.add(new Enemy(x, y, player, types[random.nextInt(3)], 3));
+                        enemiesLoaded.add(new Enemy(x, y, player, types[random.nextInt(3)], 1));
                     }
                     x += gp.tileSize;
                 }

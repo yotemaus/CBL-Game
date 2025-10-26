@@ -110,18 +110,22 @@ public class TileManager {
             tile[17] = new Tile();
             tile[17].image = ImageIO.read(getClass().getResourceAsStream(
                 "/tiles/water/water_tile0.png"));
+            tile[17].collision = true;
 
             tile[18] = new Tile();
             tile[18].image = ImageIO.read(getClass().getResourceAsStream(
                 "/tiles/water/water_tile1.png"));
+            tile[18].collision = true;
 
             tile[19] = new Tile();
             tile[19].image = ImageIO.read(getClass().getResourceAsStream(
                 "/tiles/water/water_tile2.png"));
+            tile[19].collision = true;
 
             tile[20] = new Tile();
             tile[20].image = ImageIO.read(getClass().getResourceAsStream(
                 "/tiles/water/water_tile3.png"));
+            tile[20].collision = true;
 
             tile[21] = new Tile();
             tile[21].image = ImageIO.read(getClass().getResourceAsStream(

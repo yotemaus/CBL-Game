@@ -107,7 +107,7 @@ public class Player extends Entity {
                 if (spriteNum > 4) {
                     spriteNum = 1;
                 }
-                    spriteCounter = 0;
+                spriteCounter = 0;
             }
         }
 
