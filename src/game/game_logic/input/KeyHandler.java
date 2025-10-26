@@ -2,6 +2,7 @@ package game.game_logic.input;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import game.main.GameLoop;
 
 /**
  * Allows the game to monitor keyboard inpots for the player to interact with the game.
@@ -18,6 +19,7 @@ public class KeyHandler implements KeyListener {
     public boolean leftpressed; 
     public boolean spacepressed;
     public boolean spacetapped;
+    public boolean escPressed;
     
     @Override
     public void keyPressed(KeyEvent e) {
@@ -50,6 +52,9 @@ public class KeyHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_SPACE) {
             spacepressed = true;
+        }
+        if (code == KeyEvent.VK_ESCAPE) {
+            escPressed = !escPressed;
         }
 
     }
@@ -89,6 +94,7 @@ public class KeyHandler implements KeyListener {
             }
             spacepressed = false;
         }
+
     }
 
     @Override

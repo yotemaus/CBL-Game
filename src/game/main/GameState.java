@@ -2,16 +2,18 @@ package game.main;
 
 import game.game_logic.collision.CollisionManager;
 import game.game_logic.entity.Enemy;
+import game.game_logic.entity.EnemyManager;
 import game.game_logic.entity.Entity;
 import game.game_logic.entity.Player;
 import game.game_logic.entity.Projectile;
 import game.game_logic.entity.ProjectileManager;
 import game.game_logic.input.KeyHandler;
 import game.game_logic.map.MapManager;
-import game.game_logic.type;
 import game.ui.GamePanel;
 import game.ui.Hud;
-import game.game_logic.entity.EnemyManager;
+
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,15 +24,18 @@ import java.util.List;
 public class GameState {
 
     private final Player player;
+    private final GamePanel panel;
     private final List<Entity> entities = new ArrayList<>();
     private final CollisionManager collisionManager;
     private final MapManager mapManager;
     private final ProjectileManager projectileManager;
     private final EnemyManager enemyManager;
+    private final KeyHandler keyH;
     private final Hud hud;
     List<Entity> removedEntities = new ArrayList<Entity>();
-    private final int attack_cd_frames = 30;
-    private int cooldown_counter = 0;
+    private final int attackCdFrames = 30;
+    private int cooldownCounter = 0;
+    private boolean paused = false;
 
     /**
      * Constructor.
@@ -38,7 +43,9 @@ public class GameState {
      * @param keyH KeyHandler to pass to player
      */
     public GameState(GamePanel panel, KeyHandler keyH) {
+        this.panel = panel;
         this.player = new Player(panel, keyH);
+        this.keyH = keyH;
         entities.add(player);
         this.collisionManager = new CollisionManager();
         this.projectileManager = new ProjectileManager(keyH, player);
@@ -51,6 +58,10 @@ public class GameState {
      * Update every entity in the array.
      */
     public void update() {
+
+        if (keyH.escPressed) {
+            return;
+        }
 
         for (Entity e : entities) {
             e.update();
@@ -74,12 +85,12 @@ public class GameState {
             if (newProjectile != null) {
                 entities.add(newProjectile);
                 player.isShooting = true;
-                cooldown_counter = attack_cd_frames;
+                cooldownCounter = attackCdFrames;
             }
         }
-        if (cooldown_counter > 0) {
-            cooldown_counter--;
-        } else if (cooldown_counter == 0 ) {
+        if (cooldownCounter > 0) {
+            cooldownCounter--;
+        } else if (cooldownCounter == 0 ) {
             player.isShooting = false;
         }
 
@@ -100,12 +111,22 @@ public class GameState {
      * @param g2 Graphics2D object.
      */
     public void render(Graphics2D g2) {
+
         for (Entity e : entities) {
             e.draw(g2);
         }
         for (Entity e : enemyManager.enemiesLoaded) {
             e.draw(g2);
         }
-        hud.draw(g2);  
+        hud.draw(g2); 
+        
+        if (keyH.escPressed) {
+            g2.setColor(Color.WHITE);
+            g2.setFont(new Font("Arial", Font.BOLD, 100));
+            g2.drawString("PAUSED", 180,  panel.screenHeight / 2);
+            g2.setFont(new Font("Arial", Font.PLAIN, 20));
+            g2.drawString("Press ESC to resume.", 280,  panel.screenHeight / 2 + 30);
+            //g2.drawString("Health: " + player.health, 20, 60);
+        }
     }
-}
+}    

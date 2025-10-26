@@ -9,7 +9,6 @@ public class GameLoop implements Runnable {
     private final Runnable renderer;
     private volatile boolean running = false;
     private Thread gameThread;
-
     private final double targetUps; //Updates per second
 
     /**
@@ -25,7 +24,7 @@ public class GameLoop implements Runnable {
     }
 
     /**
-     * Start the loop.
+     * Create a new thread to run the game loop in.
      */
     public void startGameLoop() {
 
